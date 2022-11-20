@@ -178,6 +178,10 @@ Please refer to the following URL and install Pinocchio.
 Create and build the workspace
 +++++++++++++++++++++++++++++++++
 
+Download the source code from github by entering the following command:
+
+.. code-block:: bash
+
    mkdir ~/hsr_project
    cd ~/hsr_project
    git clone -b foxy https://github.com/hsr-project/hsrb_description.git
