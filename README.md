@@ -1,6 +1,6 @@
 # Setup
 
-* [Real Robot](https://github.com/hsr-project/hsr-ros2-setup)
+* [Real Robot](https://git.hsr.io/tmc/hsr-ros2-setup/-/blob/main/README.md) (Real robot user only)
 * Gazebo and Rviz Simulation [EN](docs/setup_sim_en.md) [JP](docs/setup_sim_jp.md)
 
 # Tools
