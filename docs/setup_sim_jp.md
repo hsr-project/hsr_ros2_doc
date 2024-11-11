@@ -39,7 +39,7 @@ git clone -b humble https://github.com/hsr-project/tmc_manipulation_base.git
 git clone -b humble https://github.com/hsr-project/tmc_manipulation_planner.git
 git clone -b humble https://github.com/hsr-project/tmc_realtime_control.git
 git clone -b humble https://github.com/hsr-project/tmc_voice.git
-rm -rf src/hsrb_launch/hsrb_robot_launch
+rm -rf hsrb_launch/hsrb_robot_launch
 ```
 
 ビルドします．
