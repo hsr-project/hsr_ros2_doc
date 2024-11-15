@@ -45,11 +45,11 @@ source install/setup.bash
 
 # Launch Examples
 
-demo.launch.pyを実行します．ロボットに応じた適切なlaunchファイルを利用してください．
+シミュレータ等を起動後，demo.launch.pyを実行します．ロボットに応じた適切なlaunchファイルを利用してください．
 以下は，HSR-Bの例です．
 
 ```
-ros2 launch hsrb_rviz_simulator hsrb_rviz_simulator.launch.py
+ros2 launch hsrb_moveit_config hsrb_demo.launch.py
 ```
 
 ## GUIでの操作

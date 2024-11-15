@@ -45,12 +45,12 @@ source install/setup.bash
 
 # Launch Examples
 
-Run the demo.launch.py.
+After starting the simulator or other required tools, execute demo.launch.py.
 Use the appropriate launch file for the robot.
 The following is an example for HSR-B:
 
 ```
-ros2 launch hsrb_rviz_simulator hsrb_rviz_simulator.launch.py
+ros2 launch hsrb_moveit_config hsrb_demo.launch.py
 ```
 
 ## Operation via GUI
