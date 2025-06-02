@@ -20,14 +20,16 @@ rosdep update
 
 ```
 mkdir -p ~/hsr_ros2_ws/src && cd ~/hsr_ros2_ws/src
-git clone -b humble https://github.com/hsr-project/hsrb_description.git
 git clone -b humble https://github.com/hsr-project/hsrb_interfaces.git
-git clone -b humble https://github.com/hsr-project/hsrb_meshes.git
+git clone -b humble https://github.com/hsr-project/hsrb_common.git
+git clone -b humble https://github.com/hsr-project/hsr_common.git
 git clone -b humble https://github.com/hsr-project/tmc_common.git
+git clone -b humble https://github.com/hsr-project/tmc_drivers.git
 git clone -b humble https://github.com/hsr-project/tmc_common_msgs.git
 git clone -b humble https://github.com/hsr-project/tmc_manipulation_base.git
 git clone -b humble https://github.com/hsr-project/tmc_realtime_control.git
 git clone -b humble https://github.com/hsr-project/tmc_voice.git
+rm -rf tmc_drivers/tmc_pgr_camera
 ```
 
 ビルドします．

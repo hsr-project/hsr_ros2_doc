@@ -20,11 +20,10 @@ Create a workspace and retrieve the necessary packages:
 
 ```
 mkdir -p ~/hsr_ros2_ws/src && cd ~/hsr_ros2_ws/src
-git clone -b humble https://github.com/hsr-project/hsrb_description.git
+git clone -b humble https://github.com/hsr-project/hsrb_common.git
 git clone -b humble https://github.com/hsr-project/hsrb_manipulation.git
-git clone -b humble https://github.com/hsr-project/hsrb_meshes.git
-git clone -b humble https://github.com/hsr-project/hsrb_moveit_config.git
-git clone -b humble https://github.com/hsr-project/hsrb_moveit_plugins.git
+git clone -b humble https://github.com/hsr-project/hsrb_moveit.git
+git clone -b humble https://github.com/hsr-project/hsr_common.git
 git clone -b humble https://github.com/hsr-project/tmc_common.git
 git clone -b humble https://github.com/hsr-project/tmc_common_msgs.git
 git clone -b humble https://github.com/hsr-project/tmc_manipulation.git
