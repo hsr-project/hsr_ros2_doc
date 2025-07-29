@@ -20,7 +20,6 @@ rosdep update
 
 ```
 mkdir -p ~/hsr_ros2_ws/src && cd ~/hsr_ros2_ws/src
-git clone -b humble https://github.com/hsr-project/gazebo_ros2_control.git
 git clone -b humble https://github.com/hsr-project/hsrb_controllers.git
 git clone -b humble https://github.com/hsr-project/hsrb_common.git
 git clone -b humble https://github.com/hsr-project/hsrb_drivers.git
