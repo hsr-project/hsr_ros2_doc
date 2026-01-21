@@ -38,6 +38,7 @@ git clone -b humble https://github.com/hsr-project/tmc_database.git
 git clone -b humble https://github.com/hsr-project/tmc_manipulation.git
 git clone -b humble https://github.com/hsr-project/tmc_manipulation_base.git
 git clone -b humble https://github.com/hsr-project/tmc_manipulation_planner.git
+git clone -b humble https://github.com/hsr-project/tmc_point_cloud.git
 git clone -b humble https://github.com/hsr-project/tmc_realtime_control.git
 git clone -b humble https://github.com/hsr-project/tmc_voice.git
 git clone -b humble https://github.com/hsr-project/tmc_navigation.git

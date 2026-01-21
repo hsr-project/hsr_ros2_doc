@@ -48,6 +48,12 @@ source install/setup.bash
 ros2 run hsrb_interface_py ihsrb.py
 ```
 
+シミュレータの場合は, use_sim_timeを設定してください.
+
+```
+ros2 run hsrb_interface_py ihsrb.py --ros-args -p use_sim_time:=true
+```
+
 以下はコマンド例です．詳細は，各関数のhelpを確認ください．
 
 ```python

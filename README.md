@@ -8,3 +8,4 @@
 * Moveit2 [EN](docs/moveit_en.md) [JP](docs/moveit_jp.md)
 * Rosnav2 [EN](docs/rosnav_en.md) [JP](docs/rosnav_jp.md)
 * HSR Python Interface [EN](docs/hsrb_interface_en.md) [JP](docs/hsrb_interface_jp.md)
+* Pick and Place example [EN](https://github.com/hsr-project/pick_and_place_example/blob/main/README-EN.md) [JP](https://github.com/hsr-project/pick_and_place_example/blob/main/README.md)
