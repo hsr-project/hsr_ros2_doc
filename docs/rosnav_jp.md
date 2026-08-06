@@ -2,7 +2,7 @@
 
 以下を参考に，ROS2をインストールしてください．
 
-* https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html
+* https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html
 
 また，必要なツールをインストールしてください．
 
@@ -20,14 +20,14 @@ rosdep update
 
 ```
 mkdir -p ~/hsr_ros2_ws/src && cd ~/hsr_ros2_ws/src
-git clone -b humble https://github.com/hsr-project/hsrb_rosnav.git
+git clone -b jazzy https://github.com/hsr-project/hsrb_rosnav.git
 ```
 
 ビルドします．
 
 ```
 cd ~/hsr_ros2_ws/
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 rosdep install --from-paths . -y --ignore-src
 colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 source install/setup.bash
@@ -41,7 +41,7 @@ source install/setup.bash
 まず, ワールドの起動を行います. use_navigation:=falseで起動してください.
 
 ```
-ros2 launch hsrb_gazebo_launch hsrb_apartment_no_objects_world.launch.py use_navigation:=false
+ros2 launch hsrb_gazebo_launch hsrb_apartment_no_objects_world.launch.py use_navigation:=false rviz:=false
 ```
 
 その後, rosnav系のノードを起動します. 
@@ -103,7 +103,7 @@ $ bash start_ros2_docker.sh
 rosnav系のノードを起動します. mapには, tmc_database/tmc_potential_maps/maps/white_space/map.yamlを指定してください.
 
 ```
-ros2 launch hsrb_rosnav_config navigation_launch.py map:=/full/path/to/tmc_database/tmc_potential_maps/maps/white_space/map.yaml initial_orientation_xyzw:=[0,0,0,1]
+ros2 launch hsrb_rosnav_config navigation_launch.py map:=/full/path/to/tmc_database/tmc_potential_maps/maps/white_space/map.yaml use_sim_time:=True initial_orientation_xyzw:=[0,0,0,1]
 ```
 
 地図作成用のノードを起動します.
@@ -133,7 +133,9 @@ ros2 run nav2_map_server map_saver_cli -f map --ros-args -p save_map_timeout:=10
 
 ナビゲーション用のプログラムを立ち上げます．
 
-シミュレータの場合は, use_sim_time:=Trueを設定してください.
+map:=/full/path/to/map.yaml には「Mapping」で作成したmapへのパスを指定してください。
+
+なお, シミュレータの場合は, use_sim_time:=Trueを設定してください.
 
 ```
 ros2 launch hsrb_rosnav_config navigation_launch.py map:=/full/path/to/map.yaml initial_orientation_xyzw:=[0,0,0,1]

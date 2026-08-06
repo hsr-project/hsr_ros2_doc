@@ -2,7 +2,7 @@
 
 Please refer to the following link to install ROS2:
 
-* https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html
+* https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html
 
 Additionally, install the necessary tools:
 
@@ -20,14 +20,14 @@ Create a workspace and retrieve the necessary packages:
 
 ```
 mkdir -p ~/hsr_ros2_ws/src && cd ~/hsr_ros2_ws/src
-git clone -b humble https://github.com/hsr-project/hsrb_rosnav.git
+git clone -b jazzy https://github.com/hsr-project/hsrb_rosnav.git
 ```
 
 Build the workspace:
 
 ```
 cd ~/hsr_ros2_ws/
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 rosdep install --from-paths . -y --ignore-src
 colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 source install/setup.bash
@@ -36,12 +36,12 @@ source install/setup.bash
 
 # Mapping
 
-## In the case of a simulator
+## For the simulator
 
 First, start the world. Please launch it with use_navigation:=false.
 
 ```
-ros2 launch hsrb_gazebo_launch hsrb_apartment_no_objects_world.launch.py use_navigation:=false
+ros2 launch hsrb_gazebo_launch hsrb_apartment_no_objects_world.launch.py use_navigation:=false rviz:=false
 ```
 
 After that, start the rosnav nodes. 
@@ -75,7 +75,7 @@ Executing this will save two files in the directory where the command was run.
 * map.pgm
 * map.yaml
 
-## In the case of the actual machine
+## For the physical robot
 
 First, on the HSR internal PC, change USE_NAVIGATION to false in /etc/opt/tmc/robot/docker.ros2.hsrb.
 
@@ -133,7 +133,9 @@ Executing this will save two files in the directory where the command was run.
 
 Launch the navigation program.
 
-For the simulator, set use_sim_time:=True.
+Specify the path to the map you created in “Mapping” for map:=/full/path/to/map.yaml.
+
+Note that for the simulator, set use_sim_time:=True.
 
 ```
 ros2 launch hsrb_rosnav_config navigation_launch.py map:=/full/path/to/map.yaml initial_orientation_xyzw:=[0,0,0,1]
