@@ -2,7 +2,7 @@
 
 Please refer to the following link to install ROS2:
 
-* https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html
+* https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html
 
 Additionally, install the necessary tools:
 
@@ -20,15 +20,15 @@ Create a workspace and retrieve the necessary packages:
 
 ```
 mkdir -p ~/hsr_ros2_ws/src && cd ~/hsr_ros2_ws/src
-git clone -b humble https://github.com/hsr-project/hsrb_interfaces.git
-git clone -b humble https://github.com/hsr-project/hsrb_common.git
-git clone -b humble https://github.com/hsr-project/hsr_common.git
-git clone -b humble https://github.com/hsr-project/tmc_common.git
-git clone -b humble https://github.com/hsr-project/tmc_drivers.git
-git clone -b humble https://github.com/hsr-project/tmc_common_msgs.git
-git clone -b humble https://github.com/hsr-project/tmc_manipulation_base.git
-git clone -b humble https://github.com/hsr-project/tmc_realtime_control.git
-git clone -b humble https://github.com/hsr-project/tmc_voice.git
+git clone -b jazzy https://github.com/hsr-project/hsrb_interfaces.git
+git clone -b jazzy https://github.com/hsr-project/hsrb_common.git
+git clone -b jazzy https://github.com/hsr-project/hsr_common.git
+git clone -b jazzy https://github.com/hsr-project/tmc_common.git
+git clone -b jazzy https://github.com/hsr-project/tmc_drivers.git
+git clone -b jazzy https://github.com/hsr-project/tmc_common_msgs.git
+git clone -b jazzy https://github.com/hsr-project/tmc_manipulation_base.git
+git clone -b jazzy https://github.com/hsr-project/tmc_realtime_control.git
+git clone -b jazzy https://github.com/hsr-project/tmc_voice.git
 rm -rf tmc_drivers/tmc_pgr_camera
 ```
 
@@ -36,7 +36,7 @@ Build the workspace:
 
 ```
 cd ~/hsr_ros2_ws/
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 rosdep install --from-paths . -y --ignore-src
 colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 source install/setup.bash
@@ -44,11 +44,13 @@ source install/setup.bash
 
 # Bringup Python Interface
 
+For the physical robot
+
 ```
 ros2 run hsrb_interface_py ihsrb.py
 ```
 
-For the simulator, please set use_sim_time.
+For the simulator
 
 ```
 ros2 run hsrb_interface_py ihsrb.py --ros-args -p use_sim_time:=true
