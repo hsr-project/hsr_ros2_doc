@@ -1,0 +1,784 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>3.2.1. Basic &#8212; HSR ROS2 Simulator Manual version: 1.1.0</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=96e3bf71"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=505101b2"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python_interface/arm_basic_python_interface';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.2.2. Advanced" href="arm_advanced_python_interface.html" />
+    <link rel="prev" title="3.2. Joint Control" href="arm_python_interface.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">HSR ROS2 Simulator Manual version: 1.1.0</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../setup/setup.html">1. Simulator Environment Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start_development/start_development.html">2. Starting Development</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="python_interface.html">3. Using the Python Interface</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="start_python_interface.html">3.1. About the Python Interface</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="arm_python_interface.html">3.2. Joint Control</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">3.2.1. Basic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="arm_advanced_python_interface.html">3.2.2. Advanced</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="base_python_interface.html">3.3. Base Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="voice_python_interface.html">3.4. Speech Synthesis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../moveit2/use_moveit2.html">4. Using MoveIt2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../moveit2/moveit2.html">4.1. Using MoveIt2</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../rosnav2/rosnav2.html">5. Using Nav2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../rosnav2/simulator.html">5.1. The Simulator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pick_place/pick_place.html">6. Execution of Pick &amp; Place Sample Code Integrating Object Recognition and Grasp Pose Estimation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pick_place/overview.html">6.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pick_place/simulator.html">6.2. Running on the Simulator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tool_controll/tool_controll.html">7. HSR Operation Using Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tool_controll/use_dualshock_controller.html">7.1. Control Using a DUALSHOCK®</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../reference/reference.html">8. Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../reference/ros_api.html">8.1. ROS API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/ros_interface.html">8.1.1. ROS Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/ros_command_tool.html">8.1.2. ROS Commands and Tools</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/python_interface/arm_basic_python_interface.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Basic</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.2.1.1. Initial Pose Transitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.2.1.2. Joint Control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xtion">3.2.1.3. Change of Xtion’s Direction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.2.1.4. Hand Control</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.2.1.4.1. Opening Angle Control</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-gripper-set-distance">3.2.1.4.2. Fingertip Distance Control</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-gripper-apply-force">3.2.1.4.3. Gripping Force Control</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">3.2.1.5. End-Effector Pose Control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">3.2.1.6. Linear End-Effector Motion Control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">3.2.1.7. Circular-Arc End-Effector Motion Control</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="id1">
+<h1><span class="section-number">3.2.1. </span>Basic<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2><span class="section-number">3.2.1.1. </span>Initial Pose Transitions<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>This section explains how to transition to the initial pose.There are two types of initial poses, and transitions to these poses are performed while avoiding self-collision.</p>
+<ol class="arabic">
+<li><p>A pose in which the end effector does not interfere during movement</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>whole_body.move_to_go<span class="o">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/move_to_go.png"><img alt="../_images/move_to_go.png" src="../_images/move_to_go.png" style="width: 510.0px; height: 450.0px;" /></a>
+</li>
+<li><p>A natural pose suitable for recognition and arm operation</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>whole_body.move_to_neutral<span class="o">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/move_to_neutral.png"><img alt="../_images/move_to_neutral.png" src="../_images/move_to_neutral.png" style="width: 510.0px; height: 450.0px;" /></a>
+</li>
+</ol>
+</section>
+<section id="id3">
+<h2><span class="section-number">3.2.1.2. </span>Joint Control<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>This section explains the commands used to move joints to desired angles.</p>
+<ol class="arabic">
+<li><p>Run the following to check which joints the HSR has.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>whole_body.joint_names
+</pre></div>
+</div>
+<p>A list of joints will be displayed. Note that some joints cannot be moved using this command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Out<span class="o">[]</span>:
+<span class="o">[</span><span class="s1">'arm_flex_joint'</span>,
+<span class="w"> </span><span class="s1">'arm_roll_joint'</span>,
+<span class="w"> </span><span class="s1">'wrist_flex_joint'</span>,
+<span class="w"> </span><span class="s1">'wrist_roll_joint'</span>,
+<span class="w"> </span><span class="s1">'head_tilt_joint'</span>,
+<span class="w"> </span><span class="s1">'base_l_drive_wheel_joint'</span>,
+<span class="w"> </span><span class="s1">'base_roll_joint'</span>,
+<span class="w"> </span><span class="s1">'arm_lift_joint'</span>,
+<span class="w"> </span><span class="s1">'hand_motor_joint'</span>,
+<span class="w"> </span><span class="s1">'head_pan_joint'</span>,
+<span class="w"> </span><span class="s1">'base_r_drive_wheel_joint'</span>,
+<span class="w"> </span><span class="s1">'hand_l_spring_proximal_joint'</span>,
+<span class="w"> </span><span class="s1">'hand_r_spring_proximal_joint'</span><span class="o">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>The joints that can be operated with this interface are listed below.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 31%" />
+<col style="width: 8%" />
+<col style="width: 15%" />
+<col style="width: 23%" />
+<col style="width: 15%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Number</p></td>
+<td><p>Joint Name</p></td>
+<td><p>Type</p></td>
+<td><p>Axial Direction</p></td>
+<td><p>Range of Motion</p></td>
+<td><p>Remarks</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">arm_lift_joint</span></code></p></td>
+<td><p>Linear</p></td>
+<td><p>z</p></td>
+<td><p>0.0～0.69[m]</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">arm_flex_joint</span></code></p></td>
+<td><p>Rotation</p></td>
+<td><p>-y</p></td>
+<td><p>-2.617～0.0[rad]</p></td>
+<td><p>-150～0[deg]</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">arm_roll_joint</span></code></p></td>
+<td><p>Rotation</p></td>
+<td><p>z</p></td>
+<td><p>-1.919～3.665[rad]</p></td>
+<td><p>-110～210[deg]</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">wrist_flex_joint</span></code></p></td>
+<td><p>Rotation</p></td>
+<td><p>-y</p></td>
+<td><p>-1.919～1.221[rad]</p></td>
+<td><p>-110～70[deg]</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">wrist_roll_joint</span></code></p></td>
+<td><p>Rotation</p></td>
+<td><p>z</p></td>
+<td><p>-1.919～3.665[rad]</p></td>
+<td><p>-110～210[deg]</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">head_pan_joint</span></code></p></td>
+<td><p>Rotation</p></td>
+<td><p>z</p></td>
+<td><p>-3.839～1.745[rad]</p></td>
+<td><p>-220～100[deg]</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">head_tilt_joint</span></code></p></td>
+<td><p>Rotation</p></td>
+<td><p>-y</p></td>
+<td><p>-1.570～0.523[rad]</p></td>
+<td><p>-90～30[deg]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p>Run the following to operate the linear axis. The unit is [m].</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>whole_body.move_to_joint_positions<span class="o">({</span><span class="s1">'arm_lift_joint'</span>:<span class="w"> </span><span class="m">0</span>.2<span class="o">})</span>
+</pre></div>
+</div>
+<p>Since the argument is given as a Python dictionary, make sure to enclose it with <code class="docutils literal notranslate"><span class="pre">{}</span></code> .</p>
+<a class="reference internal image-reference" href="../_images/move_to_joint_positions_arm.png"><img alt="../_images/move_to_joint_positions_arm.png" src="../_images/move_to_joint_positions_arm.png" style="width: 409.0px; height: 357.0px;" /></a>
+</li>
+<li><p>Run the following to operate the neck. The unit is [rad].</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>whole_body.move_to_joint_positions<span class="o">({</span><span class="s1">'head_pan_joint'</span>:<span class="w"> </span><span class="m">0</span>.4,<span class="w"> </span><span class="s1">'head_tilt_joint'</span>:<span class="w"> </span>-0.2<span class="o">})</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/move_to_joint_positions_head.png"><img alt="../_images/move_to_joint_positions_head.png" src="../_images/move_to_joint_positions_head.png" style="width: 409.0px; height: 406.5px;" /></a>
+</li>
+<li><p>Run the following to specify and execute multiple sets of target poses.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_joint_positions_multiple_targets</span><span class="p">([</span><span class="s1">'arm_lift_joint'</span><span class="p">,</span> <span class="s1">'arm_flex_joint'</span><span class="p">,</span> <span class="s1">'wrist_flex_joint'</span><span class="p">],</span> <span class="p">[[</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.57</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>Confirm that the robot has moved to one of the target pose.</p>
+<a class="reference internal image-reference" href="../_images/multiple1.png"><img alt="../_images/multiple1.png" src="../_images/multiple1.png" style="width: 272.5px; height: 156.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/multiple2.png"><img alt="../_images/multiple2.png" src="../_images/multiple2.png" style="width: 272.5px; height: 156.0px;" /></a>
+<p>The arguments for this command are: a list of joints to move as the first argument, and a list of their target values as the second. A feasible pose is selected at random, but there is a tendency for a target pose close to the current pose to be chosen.</p>
+</li>
+</ol>
+</section>
+<section id="xtion">
+<h2><span class="section-number">3.2.1.3. </span>Change of Xtion’s Direction<a class="headerlink" href="#xtion" title="Link to this heading">#</a></h2>
+<p>You can point the Xtion toward a desired position. However, if self-collision would occur, it will not move to that pose.</p>
+<p>For example, when you run the following commands, the robot first moves to the initial pose and then looks toward “point” with respect to “base_link”.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_neutral</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">gaze_point</span><span class="p">(</span><span class="n">point</span><span class="o">=</span><span class="n">geometry</span><span class="o">.</span><span class="n">Vector3</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.3</span><span class="p">),</span> <span class="n">ref_frame_id</span><span class="o">=</span><span class="s1">'base_link'</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/gaze_point.png"><img alt="../_images/gaze_point.png" src="../_images/gaze_point.png" style="width: 409.0px; height: 304.0px;" /></a>
+</section>
+<section id="id4">
+<h2><span class="section-number">3.2.1.4. </span>Hand Control<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>A different command is used for the hand control than for the other joints.</p>
+<section id="id5">
+<h3><span class="section-number">3.2.1.4.1. </span>Opening Angle Control<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">gripper.command</span></code> is a command that controls the gripper opening angle [rad].</p>
+<ol class="loweralpha">
+<li><p>Open state (1.2 [rad])</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>gripper.command<span class="o">(</span><span class="m">1</span>.2<span class="o">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/gripper_command_open.png"><img alt="../_images/gripper_command_open.png" src="../_images/gripper_command_open.png" style="width: 319.5px; height: 259.5px;" /></a>
+</li>
+<li><p>Close state (0.0 [rad])</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>gripper.command<span class="o">(</span><span class="m">0</span>.0<span class="o">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/gripper_command_close.png"><img alt="../_images/gripper_command_close.png" src="../_images/gripper_command_close.png" style="width: 319.5px; height: 259.5px;" /></a>
+</li>
+</ol>
+</section>
+<section id="how-to-use-gripper-set-distance">
+<span id="id6"></span><h3><span class="section-number">3.2.1.4.2. </span>Fingertip Distance Control<a class="headerlink" href="#how-to-use-gripper-set-distance" title="Link to this heading">#</a></h3>
+<p>You can specify the distance between the fingertips [m] using <code class="docutils literal notranslate"><span class="pre">gripper.set_distance</span></code> . Set the fingertip distance within the range 0.0 to 0.135 [m].</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>gripper.set_distance<span class="o">(</span><span class="m">0</span>.05<span class="o">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/gripper_set_distance.png"><img alt="../_images/gripper_set_distance.png" src="../_images/gripper_set_distance.png" style="width: 319.5px; height: 259.5px;" /></a>
+</section>
+<section id="how-to-use-gripper-apply-force">
+<span id="id7"></span><h3><span class="section-number">3.2.1.4.3. </span>Gripping Force Control<a class="headerlink" href="#how-to-use-gripper-apply-force" title="Link to this heading">#</a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The end effector may vibrate. In that case, reduce the value of <code class="docutils literal notranslate"><span class="pre">gripper.apply_force</span></code> .</p>
+</div>
+<p>The gripper can grasp objects using <code class="docutils literal notranslate"><span class="pre">gripper.apply_force</span></code> .</p>
+<p>This method is recommended, for example, when grasping objects of unknown size. A typical reference for the force is about 1.0 [N].</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>gripper.apply_force<span class="o">(</span><span class="m">1</span>.0<span class="o">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id8">
+<h2><span class="section-number">3.2.1.5. </span>End-Effector Pose Control<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>This section explains how to move the HSR by specifying the pose of the end effector, for example when grasping an object. Run the following command to view the reference.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>whole_body.move_end_effector_pose?
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Signature:<span class="w"> </span>whole_body.move_end_effector_pose<span class="o">(</span>pose,<span class="w"> </span><span class="nv">ref_frame_id</span><span class="o">=</span>None,<span class="w"> </span><span class="nv">plan_only</span><span class="o">=</span>False<span class="o">)</span>
+Docstring:
+Move<span class="w"> </span>an<span class="w"> </span>end<span class="w"> </span>effector<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>given<span class="w"> </span>pose.
+
+Args
+<span class="w">    </span>pose<span class="w"> </span><span class="o">(</span>geometry.Pose<span class="w"> </span>or<span class="w"> </span>list<span class="o">(</span>geometry.Pose<span class="o">))</span>:
+<span class="w">        </span>The<span class="w"> </span>target<span class="w"> </span>pose<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>end<span class="w"> </span>effector<span class="w"> </span>frame.
+<span class="w">    </span>ref_frame_id<span class="w"> </span><span class="o">(</span>str<span class="o">)</span>:<span class="w"> </span>A<span class="w"> </span>base<span class="w"> </span>frame<span class="w"> </span>of<span class="w"> </span>an<span class="w"> </span>end<span class="w"> </span>effector.
+<span class="w">        </span>The<span class="w"> </span>default<span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>robot<span class="w"> </span>frame<span class="o">(</span><span class="sb">```</span>base_footprint<span class="sb">``</span><span class="o">)</span>.
+<span class="w">    </span>plan_only<span class="w"> </span><span class="o">(</span>bool<span class="o">)</span>:
+<span class="w">        </span>Not<span class="w"> </span>execute<span class="w"> </span>the<span class="w"> </span>trajectory<span class="w"> </span>when<span class="w"> </span>this<span class="w"> </span>arg<span class="w"> </span>is<span class="w"> </span><span class="sb">``</span>True<span class="sb">``</span>
+Returns:
+<span class="w">    </span>constrained_traj<span class="w"> </span><span class="o">(</span>trajectory_msgs.msg.JointTrajectory<span class="o">)</span>:
+<span class="w">        </span>A<span class="w"> </span>planned<span class="w"> </span>trajectory
+File:<span class="w">      </span>~/hsr_ros2_ws/install/hsrb_interface_py/local/lib/python3.10/dist-packages/hsrb_interface/joint_group.py
+Type:<span class="w">      </span>method
+</pre></div>
+</div>
+<p>“pose” specifies the end-effector pose, and “ref_frame_id” specifies the reference coordinate frame.</p>
+<p>You can specify multiple end-effector poses as a list.</p>
+<p>For the reference coordinates, you must specify a frame that can be resolved by tf.</p>
+<p>For example, with the following, the robot first moves to the initial pose, and then extends the arm so that the end effector moves 1.0 [m] in the z direction.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>whole_body.move_to_neutral<span class="o">()</span>
+In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>whole_body.move_end_effector_pose<span class="o">([</span>geometry.pose<span class="o">(</span><span class="nv">z</span><span class="o">=</span><span class="m">1</span>.0<span class="o">)]</span>,<span class="w"> </span><span class="nv">ref_frame_id</span><span class="o">=</span><span class="s1">'hand_palm_link'</span><span class="o">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">geometry.pose()</span></code> is a function for creating poses, allowing you to represent a pose—such as 1.0 m in the z direction without specifying any other parameters.</p>
+<a class="reference internal image-reference" href="../_images/move_end_effector_pose.png"><img alt="../_images/move_end_effector_pose.png" src="../_images/move_end_effector_pose.png" style="width: 512.0px; height: 369.6px;" /></a>
+</section>
+<section id="id9">
+<h2><span class="section-number">3.2.1.6. </span>Linear End-Effector Motion Control<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p>Move the end effector 0.3 [m] along the z-axis of the end-effector coordinate frame. Run the following.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_neutral</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_end_effector_by_line</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mf">0.3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The arguments are as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Args:
+    axis (Vector3): A axis to move along with
+    distance (float): Distance to move [m]
+    ref_frame_id (str):
+       [DEPRECATED] The frame name of the target end effector.
+       ``axis`` is defined on this frame.
+    plan_only (bool):
+       Not execute the trajectory when this arg is ``True``
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/move_end_effector_by_line.png"><img alt="../_images/move_end_effector_by_line.png" src="../_images/move_end_effector_by_line.png" style="width: 512.0px; height: 446.40000000000003px;" /></a>
+</section>
+<section id="id10">
+<h2><span class="section-number">3.2.1.7. </span>Circular-Arc End-Effector Motion Control<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>Run the following to move the end effector along an arc trajectory.</p>
+<p>Here, the rotation center is defined as a coordinate frame obtained by moving 0.45 [m] in the y direction and 0.08 [m] in the z direction from hand_palm_link, and then rotating 90 [deg] around the y-axis. The end effector moves 60 [deg] along an arc trajectory whose rotation axis is the z-axis of this frame.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_neutral</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_end_effector_by_arc</span><span class="p">(</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mf">0.45</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">ej</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">90.0</span><span class="p">)),</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">60.0</span><span class="p">),</span> <span class="n">ref_frame_id</span><span class="o">=</span><span class="s1">'hand_palm_link'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The arguments are as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Args:
+    center (Tuple[Vector3, Quaternion]):
+        A center pose of rotation. The z axis is used as rotation axis.
+    angle (float): Angle to move [rad]. The range is (-PI, PI)
+    ref_frame_id (str): A base frame of an end effector.
+        The default is the robot frame(```base_footprint``).
+    plan_only (bool):
+        Not execute the trajectory when this arg is ``True``
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/move_end_effector_by_arc.png"><img alt="../_images/move_end_effector_by_arc.png" src="../_images/move_end_effector_by_arc.png" style="width: 512.0px; height: 405.6px;" /></a>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="arm_python_interface.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3.2. </span>Joint Control</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="arm_advanced_python_interface.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3.2.2. </span>Advanced</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.2.1.1. Initial Pose Transitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.2.1.2. Joint Control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xtion">3.2.1.3. Change of Xtion’s Direction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.2.1.4. Hand Control</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.2.1.4.1. Opening Angle Control</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-gripper-set-distance">3.2.1.4.2. Fingertip Distance Control</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-gripper-apply-force">3.2.1.4.3. Gripping Force Control</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">3.2.1.5. End-Effector Pose Control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">3.2.1.6. Linear End-Effector Motion Control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">3.2.1.7. Circular-Arc End-Effector Motion Control</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Toyota Motor Corporation.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Copyright 2026, Toyota Motor Corporation.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

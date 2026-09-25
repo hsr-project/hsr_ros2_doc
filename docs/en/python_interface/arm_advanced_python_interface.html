@@ -1,0 +1,984 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>3.2.2. Advanced &#8212; HSR ROS2 Simulator Manual version: 1.1.0</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=96e3bf71"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=505101b2"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python_interface/arm_advanced_python_interface';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.3. Base Control" href="base_python_interface.html" />
+    <link rel="prev" title="3.2.1. Basic" href="arm_basic_python_interface.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">HSR ROS2 Simulator Manual version: 1.1.0</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../setup/setup.html">1. Simulator Environment Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start_development/start_development.html">2. Starting Development</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="python_interface.html">3. Using the Python Interface</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="start_python_interface.html">3.1. About the Python Interface</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="arm_python_interface.html">3.2. Joint Control</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="arm_basic_python_interface.html">3.2.1. Basic</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">3.2.2. Advanced</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="base_python_interface.html">3.3. Base Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="voice_python_interface.html">3.4. Speech Synthesis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../moveit2/use_moveit2.html">4. Using MoveIt2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../moveit2/moveit2.html">4.1. Using MoveIt2</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../rosnav2/rosnav2.html">5. Using Nav2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../rosnav2/simulator.html">5.1. The Simulator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pick_place/pick_place.html">6. Execution of Pick &amp; Place Sample Code Integrating Object Recognition and Grasp Pose Estimation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pick_place/overview.html">6.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pick_place/simulator.html">6.2. Running on the Simulator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tool_controll/tool_controll.html">7. HSR Operation Using Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tool_controll/use_dualshock_controller.html">7.1. Control Using a DUALSHOCK®</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../reference/reference.html">8. Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../reference/ros_api.html">8.1. ROS API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/ros_interface.html">8.1.1. ROS Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/ros_command_tool.html">8.1.2. ROS Commands and Tools</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/python_interface/arm_advanced_python_interface.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Advanced</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.2.2.1. Limiting the Range of Motion of the End Effector</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.2.2.2. Switching the End-Effector Reference Frame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf">3.2.2.3. End-Effector-Based Motion Control Using tf</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.2.2.4. Settings to Look at End Effector After Motion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-weight-sample-label">3.2.2.5. Adjusting the Ratio of Base and Arm Motion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evade-collision-sample-label">3.2.2.6. Collision Avoidance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3.2.2.7. Asynchronous Movement</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="id1">
+<h1><span class="section-number">3.2.2. </span>Advanced<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2><span class="section-number">3.2.2.1. </span>Limiting the Range of Motion of the End Effector<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>This section explains how to limit the range of motion of the end effector.</p>
+<ol class="arabic">
+<li><p>Run the following to add range-of-motion limitation settings.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tmc_planning_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaskSpaceRegion</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">constraint_tsr</span> <span class="o">=</span> <span class="n">TaskSpaceRegion</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">constraint_tsr</span><span class="o">.</span><span class="n">end_frame_id</span> <span class="o">=</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">end_effector_frame</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">constraint_tsr</span><span class="o">.</span><span class="n">origin_to_tsr</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">constraint_tsr</span><span class="o">.</span><span class="n">tsr_to_end</span> <span class="o">=</span> <span class="n">geometry</span><span class="o">.</span><span class="n">tuples_to_pose</span><span class="p">(</span><span class="n">whole_body</span><span class="o">.</span><span class="n">get_end_effector_pose</span><span class="p">(</span><span class="s1">'odom'</span><span class="p">))</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">constraint_tsr</span><span class="o">.</span><span class="n">min_bounds</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">100.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">100.0</span><span class="p">,</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">]</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">constraint_tsr</span><span class="o">.</span><span class="n">max_bounds</span> <span class="o">=</span> <span class="p">[</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">]</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">constraint_tsrs</span> <span class="o">=</span> <span class="p">[</span><span class="n">constraint_tsr</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run the following to check the current settings.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">constraint_tsrs</span>
+</pre></div>
+</div>
+<p>The output shown below has been partially modified for explanation purposes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Out</span><span class="p">[]:</span>
+ <span class="p">[</span><span class="n">tmc_planning_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">TaskSpaceRegion</span><span class="p">(</span><span class="n">end_frame_id</span><span class="o">=</span><span class="s1">'hand_palm_link'</span><span class="p">,</span>
+  <span class="n">origin_to_tsr</span><span class="o">=</span><span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+  <span class="n">orientation</span><span class="o">=</span><span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Quaternion</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)),</span>
+  <span class="n">tsr_to_end</span><span class="o">=</span><span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Pose</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.2865095118562522</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.07799999989169142</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.6731118874800364</span><span class="p">),</span>
+  <span class="n">orientation</span><span class="o">=</span><span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Quaternion</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.7068251814047126</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">6.870388518802683e-11</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.7073882688680914</span><span class="p">,</span> <span class="n">w</span><span class="o">=-</span><span class="mf">2.782076762579085e-11</span><span class="p">)),</span>
+  <span class="n">min_bounds</span><span class="o">=</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">100.</span> <span class="p">,</span> <span class="o">-</span><span class="mf">100.</span> <span class="p">,</span> <span class="o">-</span><span class="mf">100.</span> <span class="p">,</span> <span class="o">-</span><span class="mf">3.14159265</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.14159265</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.14159265</span><span class="p">]),</span>
+  <span class="n">max_bounds</span><span class="o">=</span><span class="n">array</span><span class="p">([</span><span class="mf">100.</span> <span class="p">,</span> <span class="mf">100.</span> <span class="p">,</span> <span class="mf">100.</span> <span class="p">,</span> <span class="mf">3.14159265</span><span class="p">,</span> <span class="mf">3.14159265</span><span class="p">,</span> <span class="mf">3.14159265</span><span class="p">]),</span>
+  <span class="n">rotation_first</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
+</pre></div>
+</div>
+</li>
+<li><p>The contents of the “min_bounds” and “max_bounds” arrays are shown below.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Index</p></td>
+<td><p>Orientation</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>X</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Z</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>Roll (tilt around the X-axis)</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>Pitch (tilt around the Y-axis)</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>Yaw (tilt around the Z-axis)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>“Roll”, “Pitch”, and “Yaw” are configured with no limits in the range from -π to π [rad].</p>
+</li>
+<li><p>Run the following to rotate the end effector in the Roll direction.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_joint_positions</span><span class="p">({</span><span class="s1">'wrist_roll_joint'</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">})</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/constraint.png"><img alt="../_images/constraint.png" src="../_images/constraint.png" style="width: 279.5px; height: 202.0px;" /></a>
+<p>Confirm that the end effector has turned over.</p>
+</li>
+<li><p>Return the pose once, then set the Roll limitation to 1.0, and execute the same command again.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_neutral</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">constraint_tsr</span><span class="o">.</span><span class="n">max_bounds</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_joint_positions</span><span class="p">({</span><span class="s1">'wrist_roll_joint'</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>Since the target pose is outside the limitation range, the following error will appear.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Out</span><span class="p">[]:</span>
+<span class="p">:</span>
+<span class="p">:</span>
+<span class="n">MotionPlanningError</span><span class="p">:</span> <span class="n">GOAL_IN_COLLISION</span> <span class="p">(</span><span class="n">Fail</span> <span class="n">to</span> <span class="n">plan</span> <span class="n">change_joint_state</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="id3">
+<h2><span class="section-number">3.2.2.2. </span>Switching the End-Effector Reference Frame<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>For end-effector-based motion, you can change the reference frame.</p>
+<ol class="arabic">
+<li><p>Run the following to check which the HSR frames can be selected as the end-effector coordinate frame.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">end_effector_frames</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Out</span><span class="p">[]:</span> <span class="p">(</span><span class="s1">'hand_palm_link'</span><span class="p">,</span> <span class="s1">'hand_l_finger_vacuum_frame'</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run the following to check which frame is currently selected as the end-effector coordinate frame.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">end_effector_frame</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Out</span><span class="p">[]:</span> <span class="s1">'hand_palm_link'</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run the following to move 0.3 [m] along the z-axis of “hand_l_finger_vacuum_frame”. The direction of motion corresponds to the direction of the suction pad on the fingertip.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">end_effector_frame</span> <span class="o">=</span> <span class="s1">'hand_l_finger_vacuum_frame'</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_end_effector_by_line</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">end_effector_frame</span> <span class="o">=</span> <span class="s1">'hand_palm_link'</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/end_effector_frame.png"><img alt="../_images/end_effector_frame.png" src="../_images/end_effector_frame.png" style="width: 512.0px; height: 420.8px;" /></a>
+</li>
+</ol>
+</section>
+<section id="tf">
+<h2><span class="section-number">3.2.2.3. </span>End-Effector-Based Motion Control Using tf<a class="headerlink" href="#tf" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p>Run the following to return to the initial pose.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_go</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">omni_base</span><span class="o">.</span><span class="n">go_abs</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_neutral</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>After setting the environment variables in a new terminal, run the following to create a frame named “my_frame”.</p>
+<p>Set <code class="docutils literal notranslate"><span class="pre">ROS_DOMAIN_ID</span></code> to the value configured when launching the simulator.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span>XXX
+$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>/opt/ros/&lt;ROS_DISTRO&gt;/setup.bash
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ros2<span class="w"> </span>run<span class="w"> </span>tf2_ros<span class="w"> </span>static_transform_publisher<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>.5<span class="w"> </span><span class="m">3</span>.14<span class="w"> </span>-1.57<span class="w"> </span><span class="m">0</span><span class="w"> </span>map<span class="w"> </span>my_frame
+</pre></div>
+</div>
+</li>
+<li><p>Run the following to align “hand_palm_link” with “my_frame”.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">end_effector_frame</span> <span class="o">=</span> <span class="s1">'hand_palm_link'</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_end_effector_pose</span><span class="p">(</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(),</span> <span class="s1">'my_frame'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will play back a motion that aligns the end effector with “my_frame”.</p>
+<a class="reference internal image-reference" href="../_images/tf_same.png"><img alt="../_images/tf_same.png" src="../_images/tf_same.png" style="width: 581.6px; height: 578.4px;" /></a>
+</li>
+<li><p>Move the end effector along the z-axis or x-axis with respect to “my_frame”.</p>
+<ul>
+<li><p>Run the following to move the end effector to 0.2 [m] in front of “my_frame”.</p>
+<p>Since “Blue (z-axis)” is the forward direction, specify <code class="docutils literal notranslate"><span class="pre">geometry.pose(z=-0.2)</span></code> .</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_end_effector_pose</span><span class="p">(</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">z</span><span class="o">=-</span><span class="mf">0.2</span><span class="p">),</span> <span class="s1">'my_frame'</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/tf_z.png"><img alt="../_images/tf_z.png" src="../_images/tf_z.png" style="width: 581.6px; height: 578.4px;" /></a>
+</li>
+<li><p>Run the following to move the end effector to 0.2 [m] above “my_frame”.</p>
+<p>Since “Red (x-axis)” is the forward direction, specify <code class="docutils literal notranslate"><span class="pre">geometry.pose(x=0.2)</span></code> .</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_end_effector_pose</span><span class="p">(</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.2</span><span class="p">),</span> <span class="s1">'my_frame'</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/tf_x.png"><img alt="../_images/tf_x.png" src="../_images/tf_x.png" style="width: 581.6px; height: 578.4px;" /></a>
+</li>
+</ul>
+</li>
+<li><p>Run the following to rotate the end effector 1.57 [rad] around “Green (y-axis)”.</p>
+<p>Rotation around each axis can be specified as “x-axis: ei”, “y-axis: ej”, and “z-axis: ek”.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_end_effector_pose</span><span class="p">(</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">ej</span><span class="o">=-</span><span class="mf">1.57</span><span class="p">),</span> <span class="s1">'my_frame'</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/tf_ej.png"><img alt="../_images/tf_ej.png" src="../_images/tf_ej.png" style="width: 580.8000000000001px; height: 648.0px;" /></a>
+</li>
+</ol>
+</section>
+<section id="id4">
+<h2><span class="section-number">3.2.2.4. </span>Settings to Look at End Effector After Motion<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>When you execute a command following <code class="docutils literal notranslate"><span class="pre">whole_body.move_end_effector_</span></code> to perform a pose transition, you can configure the robot to look at the end effector after the transition. <code class="docutils literal notranslate"><span class="pre">whole_body.looking_hand_constraint</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code> by default.</p>
+<p>Run the following to confirm how the behavior changes.</p>
+<ul>
+<li><p>When <code class="docutils literal notranslate"><span class="pre">looking_hand_constraint</span> <span class="pre">=</span> <span class="pre">True</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_neutral</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">looking_hand_constraint</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_end_effector_pose</span><span class="p">(</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">ref_frame_id</span><span class="o">=</span><span class="s1">'hand_palm_link'</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>When <code class="docutils literal notranslate"><span class="pre">looking_hand_constraint</span> <span class="pre">=</span> <span class="pre">False</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_neutral</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">looking_hand_constraint</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_end_effector_pose</span><span class="p">(</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">ref_frame_id</span><span class="o">=</span><span class="s1">'hand_palm_link'</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/looking_hand_constraint.png"><img alt="../_images/looking_hand_constraint.png" src="../_images/looking_hand_constraint.png" style="width: 560.0px; height: 200.0px;" /></a>
+</li>
+</ul>
+</section>
+<section id="linear-weight-sample-label">
+<span id="id5"></span><h2><span class="section-number">3.2.2.5. </span>Adjusting the Ratio of Base and Arm Motion<a class="headerlink" href="#linear-weight-sample-label" title="Link to this heading">#</a></h2>
+<p>The HSR uses both the base and the arm joints to transition the end-effector pose.</p>
+<p>This section explains “settings that move the base more and the arm joints less”, and conversely, “settings that move the arm joints more and the base less”. The ratio of motion can be configured separately for translation and rotation.</p>
+<ol class="arabic">
+<li><p>The translation settings are as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">linear_weight</span> <span class="o">=</span> <span class="p">(</span><span class="n">weight</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Set <code class="docutils literal notranslate"><span class="pre">(weight)</span></code> to a value between 0.1 and 100. Higher values result in smaller motions of the base.</p>
+<p>Follow the steps below to observe how the motion changes.</p>
+<ul>
+<li><p>Run the following to return to the initial pose.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_go</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">omni_base</span><span class="o">.</span><span class="n">go_abs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>When <code class="docutils literal notranslate"><span class="pre">whole_body.linear_weight</span> <span class="pre">=</span> <span class="pre">1.0</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_neutral</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">linear_weight</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_end_effector_pose</span><span class="p">(</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">ref_frame_id</span><span class="o">=</span><span class="s1">'hand_palm_link'</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_go</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">omni_base</span><span class="o">.</span><span class="n">go_abs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>When <code class="docutils literal notranslate"><span class="pre">whole_body.linear_weight</span> <span class="pre">=</span> <span class="pre">100.0</span></code></p>
+<p>Change <code class="docutils literal notranslate"><span class="pre">whole_body.linear_weight</span> <span class="pre">=</span> <span class="pre">1.0</span></code> to <code class="docutils literal notranslate"><span class="pre">100.0</span></code> in the above commands and run them.</p>
+</li>
+<li><p>When <code class="docutils literal notranslate"><span class="pre">whole_body.linear_weight</span> <span class="pre">=</span> <span class="pre">0.1</span></code></p>
+<p>Change <code class="docutils literal notranslate"><span class="pre">whole_body.linear_weight</span> <span class="pre">=</span> <span class="pre">1.0</span></code> to <code class="docutils literal notranslate"><span class="pre">0.1</span></code> in the above commands and run them.</p>
+</li>
+<li><p>Run the following to restore the value of <code class="docutils literal notranslate"><span class="pre">whole_body.linear_weight</span></code> .</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">linear_weight</span> <span class="o">=</span> <span class="mf">1.0</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<video controls poster="../_static/mpeg/linear_weight.jpeg" width="480" height="272">
+   <source src="../_static/mpeg/linear_weight.mp4">
+</video></li>
+<li><p>The rotation settings are as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">angular_weight</span> <span class="o">=</span> <span class="p">(</span><span class="n">weight</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Set <code class="docutils literal notranslate"><span class="pre">(weight)</span></code> to a value between 0.1 and 100. Higher values result in smaller motions of the base.</p>
+<p>Follow the steps below to observe how the motion changes.</p>
+<ul>
+<li><p>Run the following to return to the initial pose.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_go</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">omni_base</span><span class="o">.</span><span class="n">go_abs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>When <code class="docutils literal notranslate"><span class="pre">whole_body.angular_weight</span> <span class="pre">=</span> <span class="pre">1.0</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_neutral</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">angular_weight</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_end_effector_pose</span><span class="p">(</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ei</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">90</span><span class="p">)),</span> <span class="n">ref_frame_id</span><span class="o">=</span><span class="s1">'hand_palm_link'</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_go</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">omni_base</span><span class="o">.</span><span class="n">go_abs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>When <code class="docutils literal notranslate"><span class="pre">whole_body.angular_weight</span> <span class="pre">=</span> <span class="pre">100.0</span></code></p>
+<p>Change <code class="docutils literal notranslate"><span class="pre">whole_body.angular_weight</span> <span class="pre">=</span> <span class="pre">1.0</span></code> to <code class="docutils literal notranslate"><span class="pre">100.0</span></code> in the above commands and run them.</p>
+</li>
+<li><p>When <code class="docutils literal notranslate"><span class="pre">whole_body.angular_weight</span> <span class="pre">=</span> <span class="pre">0.1</span></code></p>
+<p>Change <code class="docutils literal notranslate"><span class="pre">whole_body.angular_weight</span> <span class="pre">=</span> <span class="pre">1.0</span></code> to <code class="docutils literal notranslate"><span class="pre">0.1</span></code> in the above commands and run them.</p>
+</li>
+<li><p>Run the following to restore the value of <code class="docutils literal notranslate"><span class="pre">whole_body.angular_weight</span></code> .</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">angular_weight</span> <span class="o">=</span> <span class="mf">1.0</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="evade-collision-sample-label">
+<span id="id6"></span><h2><span class="section-number">3.2.2.6. </span>Collision Avoidance<a class="headerlink" href="#evade-collision-sample-label" title="Link to this heading">#</a></h2>
+<p>This section explains how the HSR can move while avoiding collisions with external environments such as furniture.</p>
+<ol class="arabic">
+<li><p>Run the following to return to the initial pose.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_go</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">omni_base</span><span class="o">.</span><span class="n">go_abs</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_neutral</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run the following to add a box.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">collision_world</span><span class="o">.</span><span class="n">add_box</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">pose</span><span class="o">=</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">ek</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span> <span class="n">frame_id</span><span class="o">=</span><span class="s1">'map'</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/rviz2_add_box.png"><img alt="../_images/rviz2_add_box.png" src="../_images/rviz2_add_box.png" style="width: 447.20000000000005px; height: 414.40000000000003px;" /></a>
+<p>The arguments are as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Args:
+      x (float): Length along with X-axis [m]
+      y (float): Length along with Y-axis [m]
+      z (float): Length along with Z-axis [m]
+      pose (Tuple[Vector3, Quaternion] or List of Tuple[Vector3, Quaternion]):
+          A pose of a new object from the frame ``frame_id``
+      frame_id (str): A reference frame of a new object
+      name (str): A name of a new object
+      timeout (float): Wait known object list for this value [sec]
+</pre></div>
+</div>
+<p>Objects that do not move with respect to the environment, such as furniture, can be represented by setting <code class="docutils literal notranslate"><span class="pre">frame_id='map'</span></code> . For moving objects, you can represent objects that move together with a frame by setting that frame as <code class="docutils literal notranslate"><span class="pre">frame_id</span></code> .</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">pose</span></code> argument can specify multiple poses as a list.</p>
+<p>If you specify three poses using <code class="docutils literal notranslate"><span class="pre">geometry.pose</span></code> in the <code class="docutils literal notranslate"><span class="pre">pose</span></code> argument as shown below, three boxes with the same shape will be added.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">collision_world</span><span class="o">.</span><span class="n">add_box</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">pose</span><span class="o">=</span><span class="p">[</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.15</span><span class="p">),</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.15</span><span class="p">),</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)],</span> <span class="n">frame_id</span><span class="o">=</span><span class="s1">'map'</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/rviz2_add_box3.png"><img alt="../_images/rviz2_add_box3.png" src="../_images/rviz2_add_box3.png" style="width: 507.20000000000005px; height: 297.6px;" /></a>
+</div>
+</li>
+<li><p>Check how the behavior changes when this box is used for collision avoidance and when it is not.</p>
+<p>Collision avoidance is enabled by setting the collision checking environment in <code class="docutils literal notranslate"><span class="pre">whole_body.collision_world</span></code> .</p>
+<ol class="loweralpha">
+<li><p>Without collision avoidance</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">collision_world</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_end_effector_pose</span><span class="p">(</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="mf">1.3</span><span class="p">),</span> <span class="s1">'hand_palm_link'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this case, the HSR passes through the box as shown in the figure.</p>
+<a class="reference internal image-reference" href="../_images/rviz2_no_collision_check.png"><img alt="../_images/rviz2_no_collision_check.png" src="../_images/rviz2_no_collision_check.png" style="width: 623.6999999999999px; height: 464.09999999999997px;" /></a>
+<p>Run the following to return to the initial pose.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_go</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">omni_base</span><span class="o">.</span><span class="n">go_abs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_neutral</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>With collision avoidance</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">collision_world</span> <span class="o">=</span> <span class="n">collision_world</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_end_effector_pose</span><span class="p">(</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="mf">1.5</span><span class="p">),</span> <span class="s1">'hand_palm_link'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this case, the HSR moves while avoiding the box.</p>
+<a class="reference internal image-reference" href="../_images/rviz2_collision_check.png"><img alt="../_images/rviz2_collision_check.png" src="../_images/rviz2_collision_check.png" style="width: 623.6999999999999px; height: 464.09999999999997px;" /></a>
+<p>To place other various objects, return the HSR to its original pose and remove all objects. Run the following.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">collision_world</span><span class="o">.</span><span class="n">remove_all</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_go</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">omni_base</span><span class="o">.</span><span class="n">go_abs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_neutral</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+<li><p>Run the following to place a sphere and a cylinder.</p>
+<ul>
+<li><p>Sphere</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">collision_world</span><span class="o">.</span><span class="n">add_sphere</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">pose</span><span class="o">=</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+<li><p>Cylinder</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">collision_world</span><span class="o">.</span><span class="n">add_cylinder</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">pose</span><span class="o">=</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/rviz2_cylinder_and_sphere.png"><img alt="../_images/rviz2_cylinder_and_sphere.png" src="../_images/rviz2_cylinder_and_sphere.png" style="width: 470.40000000000003px; height: 452.0px;" /></a>
+</li>
+</ul>
+</li>
+<li><p>So far we have placed basic shapes, but to handle more complex shapes, specify a triangle mesh file. The supported file format is STL (Standard Triangulated Language).</p>
+<p>Download <a class="reference download internal" download="" href="../_downloads/4ad382f6396adfaacde219bee9fd5248/chair.stl"><code class="xref download docutils literal notranslate"><span class="pre">the</span> <span class="pre">sample</span> <span class="pre">chair</span> <span class="pre">model</span></code></a> .</p>
+<p>Move the downloaded file to <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> .</p>
+</li>
+<li><p>Return to the console and run the following to add the chair model to the environment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">collision_world</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">'/tmp/chair.stl'</span><span class="p">,</span> <span class="n">pose</span><span class="o">=</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">ei</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">90</span><span class="p">)),</span> <span class="n">frame_id</span><span class="o">=</span><span class="s1">'map'</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'chair'</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/rviz2_chair.png"><img alt="../_images/rviz2_chair.png" src="../_images/rviz2_chair.png" style="width: 519.2px; height: 452.0px;" /></a>
+</li>
+<li><p>Run the following to move the end effector under the chair.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_end_effector_pose</span><span class="p">(</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">ei</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">),</span> <span class="n">ej</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">)),</span><span class="n">ref_frame_id</span><span class="o">=</span><span class="s1">'map'</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/rviz2_under_chair.png"><img alt="../_images/rviz2_under_chair.png" src="../_images/rviz2_under_chair.png" style="width: 519.2px; height: 452.0px;" /></a>
+</li>
+<li><p>Run the following to move the end effector above the chair.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_end_effector_pose</span><span class="p">(</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">ei</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">),</span> <span class="n">ej</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">)),</span><span class="n">ref_frame_id</span><span class="o">=</span><span class="s1">'map'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can confirm motion that avoids collisions.</p>
+<a class="reference internal image-reference" href="../_images/rviz2_upper_chair.png"><img alt="../_images/rviz2_upper_chair.png" src="../_images/rviz2_upper_chair.png" style="width: 680.8000000000001px; height: 568.8000000000001px;" /></a>
+</li>
+<li><p>Return the HSR to its original pose and remove all objects. Run the following.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">collision_world</span><span class="o">.</span><span class="n">remove_all</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_go</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">omni_base</span><span class="o">.</span><span class="n">go_abs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_neutral</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>It is also possible to perform collision avoidance while taking grasped objects into account.</p>
+<p>Run the following to grasp the cylinder.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">collision_world</span><span class="o">.</span><span class="n">add_attached_cylinder</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">pose</span><span class="o">=</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="mf">0.025</span><span class="p">,</span> <span class="n">ej</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">90</span><span class="p">)),</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The robot will grasp the cylinder with the end effector, as shown in the figure.</p>
+<a class="reference internal image-reference" href="../_images/rviz2_attatched_cylinder.png"><img alt="../_images/rviz2_attatched_cylinder.png" src="../_images/rviz2_attatched_cylinder.png" style="width: 262.8px; height: 428.40000000000003px;" /></a>
+</li>
+<li><p>Run the following to move while keeping the object grasped.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">whole_body</span><span class="o">.</span><span class="n">move_end_effector_by_line</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mf">0.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run the following to add a box on the map.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">collision_world</span><span class="o">.</span><span class="n">add_box</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">pose</span><span class="o">=</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.65</span><span class="p">),</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/rviz2_attatched_box.png"><img alt="../_images/rviz2_attatched_box.png" src="../_images/rviz2_attatched_box.png" style="width: 361.8px; height: 322.2px;" /></a>
+</li>
+<li><p>Run the following to move the end effector under the box.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_end_effector_pose</span><span class="p">(</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="n">ej</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">),</span> <span class="s1">'map'</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/rviz2_attatched_box_under.png"><img alt="../_images/rviz2_attatched_box_under.png" src="../_images/rviz2_attatched_box_under.png" style="width: 392.40000000000003px; height: 378.0px;" /></a>
+<p>You can confirm that the motion avoids collisions between the grasped object and the box.</p>
+</li>
+<li><p>Objects other than cylinders can also be grasped. Run the following to remove the objects and grasp a sphere.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">collision_world</span><span class="o">.</span><span class="n">remove_all</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">whole_body</span><span class="o">.</span><span class="n">move_to_neutral</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">collision_world</span><span class="o">.</span><span class="n">add_attached_sphere</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">pose</span><span class="o">=</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="mf">0.025</span><span class="p">),</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/rviz2_attatched_sphere.png"><img alt="../_images/rviz2_attatched_sphere.png" src="../_images/rviz2_attatched_sphere.png" style="width: 262.8px; height: 428.40000000000003px;" /></a>
+</li>
+<li><p>Run the following to grasp a box.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">collision_world</span><span class="o">.</span><span class="n">remove_all</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">collision_world</span><span class="o">.</span><span class="n">add_attached_box</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">pose</span><span class="o">=</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="mf">0.025</span><span class="p">),</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/rviz2_attatched_box1.png"><img alt="../_images/rviz2_attatched_box1.png" src="../_images/rviz2_attatched_box1.png" style="width: 356.40000000000003px; height: 467.1px;" /></a>
+</li>
+<li><p>Run the following to grasp the chair.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[]:</span> <span class="n">collision_world</span><span class="o">.</span><span class="n">remove_all</span><span class="p">()</span>
+<span class="n">In</span> <span class="p">[]:</span> <span class="n">collision_world</span><span class="o">.</span><span class="n">add_attached_mesh</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">'/tmp/chair.stl'</span><span class="p">,</span> <span class="n">pose</span><span class="o">=</span><span class="n">geometry</span><span class="o">.</span><span class="n">pose</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mf">0.55</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.16</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">ej</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">),</span> <span class="n">ek</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">)),</span> <span class="n">name</span><span class="o">=</span><span class="s1">'chair'</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/rviz2_attatched_mesh.png"><img alt="../_images/rviz2_attatched_mesh.png" src="../_images/rviz2_attatched_mesh.png" style="width: 400.5px; height: 455.40000000000003px;" /></a>
+</li>
+</ol>
+</section>
+<section id="id7">
+<h2><span class="section-number">3.2.2.7. </span>Asynchronous Movement<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>With asynchronous Movement, you can check the motion status or interrupt the motion.</p>
+<p>To move the joints asynchronously, set the <code class="docutils literal notranslate"><span class="pre">plan_only</span></code> argument to <code class="docutils literal notranslate"><span class="pre">True</span></code> .</p>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">move_to_go</span></code> is executed asynchronously.</p>
+<p>Pass the planned trajectory to <code class="docutils literal notranslate"><span class="pre">whole_body.execute</span></code> and start the motion.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span><span class="nv">traj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>whole_body.move_to_go<span class="o">(</span><span class="nv">plan_only</span><span class="o">=</span>True<span class="o">)</span>
+In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>whole_body.execute<span class="o">(</span>traj<span class="o">)</span>
+</pre></div>
+</div>
+<ul>
+<li><p>Check whether the motion is in progress</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>whole_body.is_moving<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Stop the motion</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>whole_body.cancel_goal<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Check whether the motion succeeded</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>whole_body.is_succeeded<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Waiting until the motion is finished</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>whole_body.wait_goal<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="arm_basic_python_interface.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3.2.1. </span>Basic</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="base_python_interface.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3.3. </span>Base Control</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.2.2.1. Limiting the Range of Motion of the End Effector</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.2.2.2. Switching the End-Effector Reference Frame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf">3.2.2.3. End-Effector-Based Motion Control Using tf</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.2.2.4. Settings to Look at End Effector After Motion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-weight-sample-label">3.2.2.5. Adjusting the Ratio of Base and Arm Motion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evade-collision-sample-label">3.2.2.6. Collision Avoidance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3.2.2.7. Asynchronous Movement</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Toyota Motor Corporation.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Copyright 2026, Toyota Motor Corporation.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

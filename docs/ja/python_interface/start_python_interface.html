@@ -1,0 +1,648 @@
+
+<!DOCTYPE html>
+
+
+<html lang="ja" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>3.1. Pythonインターフェースについて &#8212; HSR ROS2 Simulator Manual version: 1.1.0</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=14a76748"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=505101b2"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../_static/translations.js?v=4dbe4bdc"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python_interface/start_python_interface';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="3.2. 関節を動かす" href="arm_python_interface.html" />
+    <link rel="prev" title="3. Pythonインターフェースを使う" href="python_interface.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="ja"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">本文へスキップ</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>トップに戻る</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="バージョン警告"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="サイトナビゲーション">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="検索" aria-label="検索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">検索</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="検索" aria-label="検索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">検索</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="このページでは">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">HSR ROS2 Simulator Manual version: 1.1.0</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="検索" aria-label="検索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">検索</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../setup/setup.html">1. シミュレータ環境のセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start_development/start_development.html">2. 開発を始める</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="python_interface.html">3. Pythonインターフェースを使う</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.1. Pythonインターフェースについて</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="arm_python_interface.html">3.2. 関節を動かす</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="arm_basic_python_interface.html">3.2.1. 基本編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="arm_advanced_python_interface.html">3.2.2. 応用編</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="base_python_interface.html">3.3. 台車を動かす</a></li>
+<li class="toctree-l2"><a class="reference internal" href="voice_python_interface.html">3.4. 音声合成を行う</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../moveit2/use_moveit2.html">4. MoveIt2を使う</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../moveit2/moveit2.html">4.1. MoveIt2を使う</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../rosnav2/rosnav2.html">5. Nav2を使う</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../rosnav2/simulator.html">5.1. ナビゲーション</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pick_place/pick_place.html">6. 物体認識と把持姿勢推定を統合したPick &amp; Placeサンプルコードの実行</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pick_place/overview.html">6.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pick_place/simulator.html">6.2. シミュレータでの実行</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tool_controll/tool_controll.html">7. ツールからのHSR操縦</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tool_controll/use_dualshock_controller.html">7.1. DUALSHOCK®を使った操縦</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../reference/reference.html">8. リファレンス</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../reference/ros_api.html">8.1. ROS API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/ros_interface.html">8.1.1. ROSインターフェース</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/ros_command_tool.html">8.1.2. ROSコマンド・ツール</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="このページをダウンロード">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/python_interface/start_python_interface.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="ソースファイルをダウンロード"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="PDFに印刷"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全画面モード"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="ライト"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="ダーク"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="検索" aria-label="検索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pythonインターフェースについて</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目次 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.1.1. 概要</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.1.2. ワークスペースの作成</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.1.3. Pythonインターフェースの使い方</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="python">
+<h1><span class="section-number">3.1. </span>Pythonインターフェースについて<a class="headerlink" href="#python" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2><span class="section-number">3.1.1. </span>概要<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>HSRをプログラムするためにROSのインターフェースとROSをラップしたPythonのインターフェースが用意されています。
+ここでは、Pythonインターフェースを使って簡単にHSRを動かす方法を学びます。</p>
+</section>
+<section id="id2">
+<h2><span class="section-number">3.1.2. </span>ワークスペースの作成<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Pythonインターフェースを使うためのワークスペースを作成します。以下の手順を実施してください。</p>
+<ol class="arabic">
+<li><p>以下を実行し、ビルドに必要なツール類をインストールしてください。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3-colcon-common-extensions<span class="w"> </span>python3-rosdep
+$<span class="w"> </span>sudo<span class="w"> </span>rosdep<span class="w"> </span>init
+$<span class="w"> </span>rosdep<span class="w"> </span>update
+</pre></div>
+</div>
+</li>
+<li><p>以下を実行し、ワークスペースの作成と必要なパッケージの配置、ビルドを行ってください。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>/opt/ros/&lt;ROS_DISTRO&gt;/setup.bash
+$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/hsr_ros2_ws/src<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/hsr_ros2_ws/src
+$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span><span class="nv">$ROS_DISTRO</span><span class="w"> </span>https://github.com/hsr-project/hsrb_interfaces.git
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/hsr_ros2_ws/
+$<span class="w"> </span>rosdep<span class="w"> </span>install<span class="w"> </span>--from-paths<span class="w"> </span>.<span class="w"> </span>-y<span class="w"> </span>--ignore-src
+$<span class="w"> </span>colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install<span class="w"> </span>--cmake-args<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release
+$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>install/setup.bash
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="id3">
+<h2><span class="section-number">3.1.3. </span>Pythonインターフェースの使い方<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>本節では、Pythonインターフェースの使い方を説明します。</p>
+<ol class="arabic">
+<li><p>以下の手順を実施し、Pythonインターフェース用のコンソールを起動してください。</p>
+<ul>
+<li><p>HSRの起動方法</p>
+<ol class="loweralpha simple">
+<li><p><a class="reference internal" href="../start_development/start_development.html#start-simulator"><span class="std std-ref">シミュレータの起動</span></a> を参照して、シミュレータでHSRを起動してください。</p></li>
+</ol>
+</li>
+<li><p>コンソールの起動方法</p>
+<ol class="loweralpha">
+<li><p>以下を実行し、環境変数の設定を行ってください。
+なお、 <code class="docutils literal notranslate"><span class="pre">ROS_DOMAIN_ID</span></code> には、シミュレータ起動時に設定した値を設定してください。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span>XXX
+$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>/opt/ros/&lt;ROS_DISTRO&gt;/setup.bash
+</pre></div>
+</div>
+</li>
+<li><p>以下を実行し、コンソールを起動してください。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/hsr_ros2_ws/
+$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>install/setup.bash
+$<span class="w"> </span>ros2<span class="w"> </span>run<span class="w"> </span>hsrb_interface_py<span class="w"> </span>ihsrb.py<span class="w"> </span>--ros-args<span class="w"> </span>-p<span class="w"> </span>use_sim_time:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>起動すると以下のようなコンソールが確認できます。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>HSR-B<span class="w"> </span>Interactive<span class="w"> </span>Shell<span class="w"> </span><span class="m">0</span>.2.0
+
+
+<span class="w">      </span>____________<span class="w">  </span>______<span class="w">  </span>_________<span class="w">       </span>__<span class="w">  </span>_______<span class="w"> </span>____
+<span class="w">     </span>/_<span class="w">  </span>__/<span class="w"> </span>__<span class="w"> </span><span class="se">\ \/</span><span class="w"> </span>/<span class="w"> </span>__<span class="w"> </span><span class="se">\/</span>_<span class="w">  </span>__/<span class="w">   </span><span class="p">|</span><span class="w">     </span>/<span class="w"> </span>/<span class="w"> </span>/<span class="w"> </span>/<span class="w"> </span>___//<span class="w"> </span>__<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>/<span class="w"> </span>/<span class="w"> </span>/<span class="w"> </span>/<span class="w"> </span>/<span class="w"> </span>/<span class="se">\ </span><span class="w"> </span>/<span class="w"> </span>/<span class="w"> </span>/<span class="w"> </span>/<span class="w"> </span>/<span class="w"> </span>/<span class="w"> </span>/<span class="w"> </span>/<span class="p">|</span><span class="w"> </span><span class="p">|</span><span class="w">    </span>/<span class="w"> </span>/_/<span class="w"> </span>/<span class="se">\_</span>_<span class="w"> </span><span class="se">\/</span><span class="w"> </span>/_/<span class="w"> </span>/
+<span class="w">     </span>/<span class="w"> </span>/<span class="w"> </span>/<span class="w"> </span>/_/<span class="w"> </span>/<span class="w"> </span>/<span class="w"> </span>/<span class="w"> </span>/_/<span class="w"> </span>/<span class="w"> </span>/<span class="w"> </span>/<span class="w"> </span>/<span class="w"> </span>___<span class="w"> </span><span class="p">|</span><span class="w">   </span>/<span class="w"> </span>__<span class="w">  </span>/___/<span class="w"> </span>/<span class="w"> </span>_,<span class="w"> </span>_/
+<span class="w">    </span>/_/<span class="w">  </span><span class="se">\_</span>___/<span class="w"> </span>/_/<span class="se">\_</span>___/<span class="w"> </span>/_/<span class="w"> </span>/_/<span class="w">  </span><span class="p">|</span>_<span class="p">|</span><span class="w">  </span>/_/<span class="w"> </span>/_//____/_/<span class="w"> </span><span class="p">|</span>_<span class="p">|</span>
+
+
+In<span class="w"> </span><span class="o">[</span><span class="m">1</span><span class="o">]</span>:
+</pre></div>
+</div>
+<p>このコンソールにコマンドを入力することで、HSRを操作できます。</p>
+</li>
+<li><p>HSRの動作確認として、ここでは台車の移動機能を使います。</p>
+<p>コンソールに <code class="docutils literal notranslate"><span class="pre">omni_base.</span></code> まで入力し、「Tab」キーを2回押してください。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>omni_base.&lt;Tab&gt;&lt;Tab&gt;
+</pre></div>
+</div>
+<p>以下のように、いくつかの候補が確認できます。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>omni_base.add_on_set_parameters_callback
+<span class="w"> </span>add_on_set_parameters_callback<span class="o">()</span><span class="w">              </span>destroy_client<span class="o">()</span><span class="w">                              </span>get_parameter_or<span class="o">()</span><span class="w">                            </span>is_moving<span class="o">()</span>
+<span class="w"> </span>add_waitable<span class="o">()</span><span class="w">                                </span>destroy_guard_condition<span class="o">()</span><span class="w">                     </span>get_parameter_type<span class="o">()</span><span class="w">                          </span>is_succeeded<span class="o">()</span>
+<span class="w"> </span>cancel_goal<span class="o">()</span><span class="w">                                 </span>destroy_node<span class="o">()</span><span class="w">                                </span>get_parameter_types<span class="o">()</span><span class="w">                         </span>move<span class="o">()</span>
+<span class="w"> </span>clients<span class="w">                                       </span>destroy_publisher<span class="o">()</span><span class="w">                           </span>get_parameters<span class="o">()</span><span class="w">                              </span>PARAM_REL_TOL
+<span class="w"> </span>context<span class="w">                                       </span>destroy_rate<span class="o">()</span><span class="w">                                </span>get_parameters_by_prefix<span class="o">()</span><span class="w">                    </span>pose
+<span class="w"> </span>count_publishers<span class="o">()</span><span class="w">                            </span>destroy_service<span class="o">()</span><span class="w">                             </span>get_pose<span class="o">()</span><span class="w">                                    </span>publishers
+<span class="w"> </span>count_subscribers<span class="o">()</span><span class="w">                           </span>destroy_subscription<span class="o">()</span><span class="w">                        </span>get_publisher_names_and_types_by_node<span class="o">()</span><span class="w">       </span>remove_on_set_parameters_callback<span class="o">()</span>
+<span class="w"> </span>create_client<span class="o">()</span><span class="w">                               </span>destroy_timer<span class="o">()</span><span class="w">                               </span>get_publishers_info_by_topic<span class="o">()</span><span class="w">                </span>remove_waitable<span class="o">()</span>
+<span class="w"> </span>create_follow_trajectory_goal<span class="o">()</span><span class="w">               </span>execute<span class="o">()</span><span class="w">                                     </span>get_service_names_and_types<span class="o">()</span><span class="w">                 </span>resolve_service_name<span class="o">()</span>
+<span class="w"> </span>create_go_pose_goal<span class="o">()</span><span class="w">                         </span>executor<span class="w">                                      </span>get_service_names_and_types_by_node<span class="o">()</span><span class="w">         </span>resolve_topic_name<span class="o">()</span>
+<span class="w"> </span>create_guard_condition<span class="o">()</span><span class="w">                      </span>follow_trajectory<span class="o">()</span><span class="w">                           </span>get_state<span class="o">()</span><span class="w">                                   </span>services
+<span class="w"> </span>create_publisher<span class="o">()</span><span class="w">                            </span>get_client_names_and_types_by_node<span class="o">()</span><span class="w">          </span>get_subscriber_names_and_types_by_node<span class="o">()</span><span class="w">      </span>set_descriptor<span class="o">()</span>
+<span class="w"> </span>create_rate<span class="o">()</span><span class="w">                                 </span>get_clock<span class="o">()</span><span class="w">                                   </span>get_subscriptions_info_by_topic<span class="o">()</span><span class="w">             </span>set_parameters<span class="o">()</span>
+<span class="w"> </span>create_service<span class="o">()</span><span class="w">                              </span>get_fully_qualified_name<span class="o">()</span><span class="w">                    </span>get_topic_names_and_types<span class="o">()</span><span class="w">                   </span>set_parameters_atomically<span class="o">()</span>
+<span class="w"> </span>create_subscription<span class="o">()</span><span class="w">                         </span>get_logger<span class="o">()</span><span class="w">                                  </span>go<span class="o">()</span><span class="w">                                          </span>subscriptions
+<span class="w"> </span>create_timer<span class="o">()</span><span class="w">                                </span>get_name<span class="o">()</span><span class="w">                                    </span>go_abs<span class="o">()</span><span class="w">                                      </span>timers
+<span class="w"> </span>declare_parameter<span class="o">()</span><span class="w">                           </span>get_namespace<span class="o">()</span><span class="w">                               </span>go_pose<span class="o">()</span><span class="w">                                     </span>undeclare_parameter<span class="o">()</span>
+<span class="w"> </span>declare_parameters<span class="o">()</span><span class="w">                          </span>get_node_names<span class="o">()</span><span class="w">                              </span>go_rel<span class="o">()</span><span class="w">                                      </span>waitables
+<span class="w"> </span>default_callback_group<span class="w">                        </span>get_node_names_and_namespaces<span class="o">()</span><span class="w">               </span>guards
+<span class="w"> </span>describe_parameter<span class="o">()</span><span class="w">                          </span>get_node_names_and_namespaces_with_enclaves<span class="o">()</span><span class="w"> </span>handle
+<span class="w"> </span>describe_parameters<span class="o">()</span><span class="w">                         </span>get_parameter<span class="o">()</span><span class="w">                               </span>has_parameter<span class="o">()</span>
+<span class="w"> </span><span class="k">function</span><span class="o">(</span>callback:<span class="w"> </span>Callable<span class="o">[[</span>List<span class="o">[</span>rclpy.parameter.Parameter<span class="o">]]</span>,<span class="w"> </span>rcl_interfaces.msg._set_parameters_result.SetParametersResult<span class="o">])</span>
+</pre></div>
+</div>
+</li>
+<li><p>上記の候補の中から <code class="docutils literal notranslate"><span class="pre">go_rel</span></code> の機能を使用します。</p>
+<p><code class="docutils literal notranslate"><span class="pre">omni_base.go_rel</span></code> の後ろに「?」をつけて実行することで、リファレンスが確認できます。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>omni_base.go_rel?
+Signature:<span class="w"> </span>omni_base.go_rel<span class="o">(</span><span class="nv">x</span><span class="o">=</span><span class="m">0</span>.0,<span class="w"> </span><span class="nv">y</span><span class="o">=</span><span class="m">0</span>.0,<span class="w"> </span><span class="nv">yaw</span><span class="o">=</span><span class="m">0</span>.0,<span class="w"> </span><span class="nv">timeout</span><span class="o">=</span><span class="m">0</span>.0<span class="o">)</span>
+Docstring:
+Move<span class="w"> </span>base<span class="w"> </span>from<span class="w"> </span>current<span class="w"> </span>position.
+
+Args:
+<span class="w">    </span>x<span class="w">   </span><span class="o">(</span>float<span class="o">)</span>:<span class="w"> </span>X-axis<span class="w"> </span>position<span class="w"> </span>on<span class="w"> </span><span class="sb">``</span>robot<span class="sb">``</span><span class="w"> </span>frame<span class="w"> </span><span class="o">[</span>m<span class="o">]</span>
+<span class="w">    </span>y<span class="w">   </span><span class="o">(</span>float<span class="o">)</span>:<span class="w"> </span>Y-axis<span class="w"> </span>position<span class="w"> </span>on<span class="w"> </span><span class="sb">``</span>robot<span class="sb">``</span><span class="w"> </span>frame<span class="w"> </span><span class="o">[</span>m<span class="o">]</span>
+<span class="w">    </span>yaw<span class="w"> </span><span class="o">(</span>float<span class="o">)</span>:<span class="w"> </span>Yaw<span class="w"> </span>position<span class="w"> </span>on<span class="w"> </span><span class="sb">``</span>robot<span class="sb">``</span><span class="w"> </span>frame<span class="w"> </span><span class="o">[</span>rad<span class="o">]</span>
+<span class="w">    </span>timeout<span class="w"> </span><span class="o">(</span>float<span class="o">)</span>:<span class="w"> </span>Timeout<span class="w"> </span><span class="k">until</span><span class="w"> </span>movement<span class="w"> </span>finish<span class="w"> </span><span class="o">[</span>sec<span class="o">]</span>.
+<span class="w">        </span>Default<span class="w"> </span>is<span class="w"> </span><span class="m">0</span>.0<span class="w"> </span>and<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>forever.
+
+Examples:
+<span class="w">    </span>..<span class="w"> </span>sourcecode::<span class="w"> </span>python
+
+<span class="w">       </span>with<span class="w"> </span>hsrb_interface.Robot<span class="o">()</span><span class="w"> </span>as<span class="w"> </span>robot:
+<span class="w">           </span><span class="nv">base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>robot.try_get<span class="o">(</span><span class="s1">'omni_base'</span><span class="o">)</span>
+<span class="w">           </span>base.go_rel<span class="o">(</span><span class="m">1</span>.0,<span class="w"> </span><span class="m">0</span>.0,<span class="w"> </span><span class="m">0</span>.0<span class="o">)</span>
+File:<span class="w">      </span>~/hsr_ros2_ws/install/hsrb_interface_py/local/lib/python3.10/dist-packages/hsrb_interface/mobile_base.py
+Type:<span class="w">      </span>method
+</pre></div>
+</div>
+<p>表示されたリファレンスから、4つの引数を持つことを確認できます。</p>
+<p>このように、対話的に機能を調べながら実行できます。
+また、その他の機能も同様に調べることができます。</p>
+</li>
+<li><p>以下を実行し、HSRが左方向に0.5[m]移動することを確認してください。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>In<span class="w"> </span><span class="o">[]</span>:<span class="w"> </span>omni_base.go_rel<span class="o">(</span><span class="m">0</span>.0,<span class="w"> </span><span class="m">0</span>.5,<span class="w"> </span><span class="m">0</span>.0,<span class="w"> </span><span class="m">100</span>.0<span class="o">)</span>
+</pre></div>
+</div>
+<p>このコマンドは、xを0.0[m]、yを0.5[m]、yaw軸の回転を0.0[rad]に設定し、タイムアウト時間を100.0[s]に指定するものです。</p>
+</li>
+<li><p>終了時は、コンソールで「Ctrl」+「D」を押すか、「quit」と入力してください</p></li>
+</ol>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="python_interface.html"
+       title="前のページ">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">前へ</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Pythonインターフェースを使う</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="arm_python_interface.html"
+       title="次ページ">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">次へ</p>
+        <p class="prev-next-title"><span class="section-number">3.2. </span>関節を動かす</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目次
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.1.1. 概要</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.1.2. ワークスペースの作成</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.1.3. Pythonインターフェースの使い方</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+著者 Toyota Motor Corporation.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Copyright 2026, Toyota Motor Corporation.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
