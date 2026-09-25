@@ -1,0 +1,1134 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>7.1. Control Using a DUALSHOCK® &#8212; HSR ROS2 Simulator Manual version: 1.1.0</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=96e3bf71"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=505101b2"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tool_controll/use_dualshock_controller';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8. Reference" href="../reference/reference.html" />
+    <link rel="prev" title="7. HSR Operation Using Tools" href="tool_controll.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">HSR ROS2 Simulator Manual version: 1.1.0</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../setup/setup.html">1. Simulator Environment Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start_development/start_development.html">2. Starting Development</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python_interface/python_interface.html">3. Using the Python Interface</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python_interface/start_python_interface.html">3.1. About the Python Interface</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../python_interface/arm_python_interface.html">3.2. Joint Control</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../python_interface/arm_basic_python_interface.html">3.2.1. Basic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../python_interface/arm_advanced_python_interface.html">3.2.2. Advanced</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_interface/base_python_interface.html">3.3. Base Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_interface/voice_python_interface.html">3.4. Speech Synthesis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../moveit2/use_moveit2.html">4. Using MoveIt2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../moveit2/moveit2.html">4.1. Using MoveIt2</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../rosnav2/rosnav2.html">5. Using Nav2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../rosnav2/simulator.html">5.1. The Simulator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pick_place/pick_place.html">6. Execution of Pick &amp; Place Sample Code Integrating Object Recognition and Grasp Pose Estimation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pick_place/overview.html">6.1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pick_place/simulator.html">6.2. Running on the Simulator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="tool_controll.html">7. HSR Operation Using Tools</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">7.1. Control Using a DUALSHOCK®</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../reference/reference.html">8. Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../reference/ros_api.html">8.1. ROS API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/ros_interface.html">8.1.1. ROS Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/ros_command_tool.html">8.1.2. ROS Commands and Tools</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tool_controll/use_dualshock_controller.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Control Using a DUALSHOCK®</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dualshock3">7.1.1. DUALSHOCK®3 Connection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">7.1.1.1. Switching to DUALSHOCK®3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.1.1.2. Wired Connection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">7.1.1.2.1. Connection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">7.1.1.2.2. Disconnection</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">7.1.1.3. Wireless Connection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-bluetooth">7.1.1.3.1. Preparation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">7.1.1.3.2. Connection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#disconnect-bluetooth">7.1.1.3.3. Disconnection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dualshock4">7.1.2. DUALSHOCK®4 Connection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">7.1.2.1. Switching to DUALSHOCK®4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">7.1.2.2. Wired Connection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">7.1.2.2.1. Connection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">7.1.2.2.2. Disconnection</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">7.1.2.3. Wireless Connection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">7.1.2.3.1. Preparation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">7.1.2.3.2. Connection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">7.1.2.3.3. Disconnection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">7.1.3. How to Use</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">7.1.3.1. Control overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">7.1.3.2. Control without optional buttons</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-share">7.1.3.3. Control while pressing “SELECT/SHARE”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">7.1.3.3.1. Default posture transitions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">7.1.3.3.2. Dynamic posture storage and transition</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l1">7.1.3.4. Control while pressing “L1”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">7.1.3.4.1. Base control</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">7.1.3.5. Control while pressing “△”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">7.1.3.5.1. Head control</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">7.1.3.6. Control while pressing “□”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">7.1.3.6.1. Lifting axis control</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">7.1.3.7. Control while pressing “○”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">7.1.3.7.1. Wrist control</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">7.1.3.8. Control while pressing “×”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">7.1.3.8.1. Arm control</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r1">7.1.3.9. Control while pressing “R1”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">7.1.3.9.1. Hand position control</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r2">7.1.3.10. Control while pressing “R2”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">7.1.3.10.1. Gripper control</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="dualshock">
+<h1><span class="section-number">7.1. </span>Control Using a DUALSHOCK®<a class="headerlink" href="#dualshock" title="Link to this heading">#</a></h1>
+<p>The HSR can be operated using a DUALSHOCK®3 or DUALSHOCK®4 controller. This section explains how to operate the HSR with the controller.</p>
+<section id="dualshock3">
+<h2><span class="section-number">7.1.1. </span>DUALSHOCK®3 Connection<a class="headerlink" href="#dualshock3" title="Link to this heading">#</a></h2>
+<p>The DUALSHOCK®3 supports wired and wireless connections.</p>
+<section id="id1">
+<h3><span class="section-number">7.1.1.1. </span>Switching to DUALSHOCK®3<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>You can switch to a DUALSHOCK®3 using the following procedure.</p>
+<ol class="arabic">
+<li><p>If the simulator is running, press “Ctrl”+”C” to stop the simulator.</p></li>
+<li><p>Run the following to set the environment variable.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">USE_DUALSHOCK4</span><span class="o">=</span><span class="nb">false</span>
+</pre></div>
+</div>
+</li>
+<li><p>Launch the simulator for the appropriate environment as needed.</p></li>
+</ol>
+</section>
+<section id="id2">
+<h3><span class="section-number">7.1.1.2. </span>Wired Connection<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>This section explains the wired connection and disconnection procedures.</p>
+<section id="id3">
+<h4><span class="section-number">7.1.1.2.1. </span>Connection<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<p>Connect the DUALSHOCK®3 controller to a USB port on the development PC.</p>
+<p>After connecting the DUALSHOCK®3 controller to the USB port, press the “PS” button shown in the figure below.</p>
+<a class="reference internal image-reference" href="../_images/tool_control_ps3_connect.jpg"><img alt="../_images/tool_control_ps3_connect.jpg" src="../_images/tool_control_ps3_connect.jpg" style="width: 273.0px; height: 169.2px;" /></a>
+</section>
+<section id="id4">
+<h4><span class="section-number">7.1.1.2.2. </span>Disconnection<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<p>To disconnect, unplug the DUALSHOCK®3 USB cable from the USB port. If the red indicator at the top of the DUALSHOCK®3 turns off, you can confirm that it has been disconnected.</p>
+</section>
+</section>
+<section id="id5">
+<h3><span class="section-number">7.1.1.3. </span>Wireless Connection<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>This section explains the preparation required for wireless connection, as well as the procedures for wireless connection and disconnection.</p>
+<section id="prepare-bluetooth">
+<span id="id6"></span><h4><span class="section-number">7.1.1.3.1. </span>Preparation<a class="headerlink" href="#prepare-bluetooth" title="Link to this heading">#</a></h4>
+<ul>
+<li><p>Configuration Performed Only on First Use</p>
+<ol class="arabic">
+<li><p>Run the following to install the required packages.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>bluetooth<span class="w"> </span>bluez<span class="w"> </span>bluez-tools
+</pre></div>
+</div>
+</li>
+<li><p>On the development PC or the HSR internal PC, set <code class="docutils literal notranslate"><span class="pre">ClassicBondedOnly</span></code> in <code class="docutils literal notranslate"><span class="pre">/etc/bluetooth/input.conf</span></code> to <code class="docutils literal notranslate"><span class="pre">false</span></code> .</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ClassicBondedOnly</span><span class="o">=</span><span class="n">false</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+<li><p>Checks Performed at Each Startup</p>
+<p>If Bluetooth is disabled on the development PC or the HSR internal PC, wireless connection is not possible, so you must check the Bluetooth status each time the system is restarted. This section explains how to check the status and enable Bluetooth.</p>
+<ul>
+<li><p>Status check</p>
+<p>Run the following to check the Bluetooth status.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rfkill list
+0: hci0: Bluetooth
+  Soft blocked: no
+  Hard blocked: no
+</pre></div>
+</div>
+<p>If both <code class="docutils literal notranslate"><span class="pre">Soft</span> <span class="pre">blocked</span></code> and <code class="docutils literal notranslate"><span class="pre">Hard</span> <span class="pre">blocked</span></code> are “no”, Bluetooth is enabled. If either of them is “yes”, Bluetooth is disabled, so perform the following procedure to enable it.</p>
+</li>
+<li><p>Enabling Bluetooth</p>
+<p>Run the following to enable and restart Bluetooth.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>rfkill<span class="w"> </span>unblock<span class="w"> </span>bluetooth
+$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>bluetooth
+</pre></div>
+</div>
+<p>Run the following to check the Bluetooth status.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rfkill list
+</pre></div>
+</div>
+<p>If Bluetooth still does not start properly and either Soft blocked or Hard blocked is “yes”, run the following.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>hciconfig<span class="w"> </span>hci0<span class="w"> </span>up<span class="w"> </span>piscan
+$<span class="w"> </span>sudo<span class="w"> </span>hciconfig<span class="w"> </span>hci0
+</pre></div>
+</div>
+<p>If you can confirm that <code class="docutils literal notranslate"><span class="pre">UP</span></code> is displayed, Bluetooth has started successfully.</p>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id7">
+<h4><span class="section-number">7.1.1.3.2. </span>Connection<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<ol class="arabic">
+<li><p>Run the following to launch <code class="docutils literal notranslate"><span class="pre">bluetoothctl</span></code> .</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>bluetoothctl
+</pre></div>
+</div>
+<p>When  bluetoothctl is launched, a console like the following is displayed. Enter commands in this console to operate Bluetooth.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>bluetooth<span class="o">]</span><span class="c1">#</span>
+</pre></div>
+</div>
+<p>To exit, press “Ctrl”+”D”.</p>
+</li>
+<li><p>Run the following to enable Bluetooth.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>bluetooth<span class="o">]</span><span class="c1"># agent on</span>
+<span class="o">[</span>bluetooth<span class="o">]</span><span class="c1"># default-agent</span>
+<span class="o">[</span>bluetooth<span class="o">]</span><span class="c1"># power on</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>connect the DUALSHOCK®3 controller to a USB port on the development PC.</p>
+<ol class="arabic simple">
+<li><p>When a <code class="docutils literal notranslate"><span class="pre">Yes/No</span></code> confirmation message is displayed in <code class="docutils literal notranslate"><span class="pre">bluetoothctl</span></code> , enter <code class="docutils literal notranslate"><span class="pre">Yes</span></code> .</p></li>
+<li><p>After unplugging the DUALSHOCK®3 USB cable from the USB port, press the “PS” button and confirm that one red indicator on the DUALSHOCK®3 lights up. If the red indicator is lit, the connection has been established successfully.</p></li>
+</ol>
+</section>
+<section id="disconnect-bluetooth">
+<span id="id8"></span><h4><span class="section-number">7.1.1.3.3. </span>Disconnection<a class="headerlink" href="#disconnect-bluetooth" title="Link to this heading">#</a></h4>
+<p>When disconnecting, perform one of the following actions.</p>
+<ol class="loweralpha">
+<li><p>Press and hold the “PS” button on the DUALSHOCK®3 controller for about 10 seconds.</p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">bluetoothctl</span></code> , run the following.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>bluetooth<span class="o">]</span><span class="c1"># disconnect</span>
+</pre></div>
+</div>
+<p>Alternatively, run the following without entering <code class="docutils literal notranslate"><span class="pre">bluetoothctl</span></code> .</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>bluetoothctl<span class="w"> </span>disconnect
+</pre></div>
+</div>
+</li>
+</ol>
+<p>If the red indicator at the top of the DUALSHOCK®3 turns off, you can confirm that it has been disconnected.</p>
+</section>
+</section>
+</section>
+<section id="dualshock4">
+<h2><span class="section-number">7.1.2. </span>DUALSHOCK®4 Connection<a class="headerlink" href="#dualshock4" title="Link to this heading">#</a></h2>
+<p>The DUALSHOCK®4 supports both wired and wireless connections.</p>
+<section id="id9">
+<h3><span class="section-number">7.1.2.1. </span>Switching to DUALSHOCK®4<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>You can switch to a DUALSHOCK®4 using the following procedure.</p>
+<ol class="arabic">
+<li><p>If the simulator is running, press “Ctrl”+”C” to stop the simulator.</p></li>
+<li><p>Run the following to set the environment variable.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">USE_DUALSHOCK4</span><span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+</li>
+<li><p>Launch the simulator for the appropriate environment as needed.</p></li>
+</ol>
+</section>
+<section id="id10">
+<h3><span class="section-number">7.1.2.2. </span>Wired Connection<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>This section explains the wired connection and disconnection procedures.</p>
+<section id="id11">
+<h4><span class="section-number">7.1.2.2.1. </span>Connection<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
+<p>Connect the DUALSHOCK®4 controller to a USB port on the development PC.</p>
+<p>After connecting the DUALSHOCK®4 controller to the USB port, press the “PS” button shown in the figure below.</p>
+<a class="reference internal image-reference" href="../_images/tool_control_ps4_connect.jpg"><img alt="../_images/tool_control_ps4_connect.jpg" src="../_images/tool_control_ps4_connect.jpg" style="width: 263.2px; height: 170.4px;" /></a>
+</section>
+<section id="id12">
+<h4><span class="section-number">7.1.2.2.2. </span>Disconnection<a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
+<p>To disconnect, unplug the DUALSHOCK®4 USB cable from the USB port. If the light bar at the top of the DUALSHOCK®4 turns off, you can confirm that it has been disconnected.</p>
+</section>
+</section>
+<section id="id13">
+<h3><span class="section-number">7.1.2.3. </span>Wireless Connection<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<p>This section explains the preparation required for wireless connection, as well as the procedures for wireless connection and disconnection.</p>
+<section id="id14">
+<h4><span class="section-number">7.1.2.3.1. </span>Preparation<a class="headerlink" href="#id14" title="Link to this heading">#</a></h4>
+<p>Refer to <a class="reference internal" href="#prepare-bluetooth"><span class="std std-ref">Preparation</span></a> in “DUALSHOCK®3 Connection” and prepare Bluetooth accordingly.</p>
+</section>
+<section id="id15">
+<h4><span class="section-number">7.1.2.3.2. </span>Connection<a class="headerlink" href="#id15" title="Link to this heading">#</a></h4>
+<p>Unlike the DUALSHOCK®3, the DUALSHOCK®4 can store pairing information once the initial configuration has been performed, making it easy to establish a wireless connection.</p>
+<p>In the following procedure, you will first perform the initial connection configuration.</p>
+<ul>
+<li><p>Initial Connection Configuration (Pairing)</p>
+<ol class="arabic">
+<li><p>Run the following to launch <code class="docutils literal notranslate"><span class="pre">bluetoothctl</span></code> .</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>bluetoothctl
+</pre></div>
+</div>
+<p>When  bluetoothctl is launched, a console like the following is displayed. Enter commands in this console to operate Bluetooth.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>bluetooth<span class="o">]</span><span class="c1">#</span>
+</pre></div>
+</div>
+<p>To exit, press “Ctrl”+”D”.</p>
+</li>
+<li><p>Run the following to enable Bluetooth.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>bluetooth<span class="o">]</span><span class="c1"># agent on</span>
+<span class="o">[</span>bluetooth<span class="o">]</span><span class="c1"># default-agent</span>
+<span class="o">[</span>bluetooth<span class="o">]</span><span class="c1"># power on</span>
+</pre></div>
+</div>
+</li>
+<li><p>Press the “SHARE” button and the “PS” button on the DUALSHOCK®4 controller at the same time, and confirm that the light bar at the top of the DUALSHOCK®4 repeatedly flashes white twice in succession.</p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">bluetoothctl</span></code> , run the following and confirm the device name (Wireless Controller) of the DUALSHOCK®4 controller.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>bluetooth<span class="o">]</span><span class="c1"># scan on</span>
+</pre></div>
+</div>
+<p>When the device name of the DUALSHOCK®4 controller is displayed, run the following.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>bluetooth<span class="o">]</span><span class="c1"># scan off</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run the following and confirm the address of the DUALSHOCK®4 controller. In the following example, the address is <code class="docutils literal notranslate"><span class="pre">A4:AE:11:20:39:F1</span></code> .</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>bluetooth<span class="o">]</span><span class="c1"># devices</span>
+Device<span class="w"> </span>A4:AE:11:20:39:F1<span class="w"> </span>Wireless<span class="w"> </span>Controller
+</pre></div>
+</div>
+</li>
+<li><p>Run the following to perform pairing. Enter the address of the DUALSHOCK®4 controller for <code class="docutils literal notranslate"><span class="pre">&lt;Address&gt;</span></code> .</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>bluetooth<span class="o">]</span><span class="c1"># pair &lt;Address&gt;</span>
+</pre></div>
+</div>
+<p>When a <code class="docutils literal notranslate"><span class="pre">Yes/No</span></code> confirmation message is displayed in <code class="docutils literal notranslate"><span class="pre">bluetoothctl</span></code> , enter <code class="docutils literal notranslate"><span class="pre">Yes</span></code> . If the light bar at the top of the DUALSHOCK®4 controller turns blue, the connection has been established successfully.</p>
+</li>
+<li><p>Run the following so that the controller can connect automatically at the next launch. Enter the address you specified above for <code class="docutils literal notranslate"><span class="pre">&lt;Address&gt;</span></code> .</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>bluetooth<span class="o">]</span><span class="c1"># trust &lt;Address&gt;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+<li><p>Subsequent Connections</p>
+<ol class="arabic">
+<li><p>Run the following to enable Bluetooth.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>bluetoothctl<span class="w"> </span>power<span class="w"> </span>on
+</pre></div>
+</div>
+</li>
+<li><p>Press the “PS” button on the DUALSHOCK®4 controller. If the light bar at the top of the DUALSHOCK®4 turns blue, the connection has been established successfully.</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<section id="id16">
+<h4><span class="section-number">7.1.2.3.3. </span>Disconnection<a class="headerlink" href="#id16" title="Link to this heading">#</a></h4>
+<p>Refer to <a class="reference internal" href="#disconnect-bluetooth"><span class="std std-ref">Disconnection</span></a> in “DUALSHOCK®3 Connection” and disconnect the connection. Note that for the DUALSHOCK®4, you can confirm disconnection when the light bar at the top of the DUALSHOCK®4 turns off.</p>
+</section>
+</section>
+</section>
+<section id="id17">
+<h2><span class="section-number">7.1.3. </span>How to Use<a class="headerlink" href="#id17" title="Link to this heading">#</a></h2>
+<section id="id18">
+<h3><span class="section-number">7.1.3.1. </span>Control overview<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<figure class="align-center" id="id35">
+<a class="reference internal image-reference" href="../_images/teleop_ps3_cheat_sheet_pattern2_en.jpg"><img alt="../_images/teleop_ps3_cheat_sheet_pattern2_en.jpg" src="../_images/teleop_ps3_cheat_sheet_pattern2_en.jpg" style="width: 1111.5px; height: 778.5px;" /></a>
+<figcaption>
+<p><span class="caption-text">DUALSHOCK&#64;3</span><a class="headerlink" href="#id35" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id36">
+<a class="reference internal image-reference" href="../_images/teleop_ps4_cheat_sheet_pattern2_en.jpg"><img alt="../_images/teleop_ps4_cheat_sheet_pattern2_en.jpg" src="../_images/teleop_ps4_cheat_sheet_pattern2_en.jpg" style="width: 1107.75px; height: 778.5px;" /></a>
+<figcaption>
+<p><span class="caption-text">DUALSHOCK&#64;4</span><a class="headerlink" href="#id36" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Basically, the operation is controlled by pushing a <strong>“Control button”</strong> while pressing an <strong>“Enable button”</strong>.</p>
+<p>In the following illustrations, the left side are the “Enable buttons” and the right side are the “Control buttons”.</p>
+</section>
+<section id="id19">
+<h3><span class="section-number">7.1.3.2. </span>Control without optional buttons<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<p>Standard posture transitions, gripper opening and closing, and suction control are always available without pressing the “Enable button”.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps3_reset.jpg"><img alt="../_images/teleop_ps3_reset.jpg" src="../_images/teleop_ps3_reset.jpg" style="width: 551.4px; height: 229.2px;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps4_reset.jpg"><img alt="../_images/teleop_ps4_reset.jpg" src="../_images/teleop_ps4_reset.jpg" style="width: 549.6px; height: 256.2px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Reset pose:</dt><dd><p>Allow the robot to transition to its standard posture where the gripper faces forward.  If it becomes hard to control the posture of the robot, it is recommended that the robot transition to the standard posture once again.</p>
+</dd>
+</dl>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps3_reset_pose.jpg"><img alt="../_images/teleop_ps3_reset_pose.jpg" src="../_images/teleop_ps3_reset_pose.jpg" style="width: 255.75px; height: 324.75px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Gripper:</dt><dd><p>Perform gripper open and close.</p>
+</dd>
+</dl>
+</section>
+<section id="select-share">
+<h3><span class="section-number">7.1.3.3. </span>Control while pressing “SELECT/SHARE”<a class="headerlink" href="#select-share" title="Link to this heading">#</a></h3>
+<section id="id20">
+<h4><span class="section-number">7.1.3.3.1. </span>Default posture transitions<a class="headerlink" href="#id20" title="Link to this heading">#</a></h4>
+<p>Allow the robot to transition to a default posture.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps3_pose_plus.jpg"><img alt="../_images/teleop_ps3_pose_plus.jpg" src="../_images/teleop_ps3_pose_plus.jpg" style="width: 551.4px; height: 210.6px;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps4_pose_plus.jpg"><img alt="../_images/teleop_ps4_pose_plus.jpg" src="../_images/teleop_ps4_pose_plus.jpg" style="width: 559.1999999999999px; height: 225.0px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Pickup1:</dt><dd><p>To pick up something from the side it transitions to a suitable posture.  A posture necessary for grasping can be achieved using the lifting axis and wrist roll axis.  Furthermore, with this posture, even if the lifting axis is lowered to its lowest point, when the gripper is closed it will transition to the posture that does not hit the ground.</p>
+</dd>
+</dl>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps3_pickup1.jpg"><img alt="../_images/teleop_ps3_pickup1.jpg" src="../_images/teleop_ps3_pickup1.jpg" style="width: 255.75px; height: 324.75px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Pickup2:</dt><dd><p>To pick up something from above it transitions to a suitable posture.  A posture necessary for grasping can be achieved using the lifting axis and wrist roll axis.  Furthermore, because of the state of this posture, even if the lifting axis is lowered to its lowest point, when the gripper is closed it will transition to the posture that does not hit the ground.</p>
+</dd>
+</dl>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps3_pickup2.jpg"><img alt="../_images/teleop_ps3_pickup2.jpg" src="../_images/teleop_ps3_pickup2.jpg" style="width: 255.0px; height: 324.75px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Suction:</dt><dd><p>It transitions its posture to use suction to pick up cards and such.  With the gripper remaining open, please allow the robot to transition to this posture.</p>
+</dd>
+</dl>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps3_suction.jpg"><img alt="../_images/teleop_ps3_suction.jpg" src="../_images/teleop_ps3_suction.jpg" style="width: 255.75px; height: 324.75px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Grasp:</dt><dd><p>To grasp an object in front of the robot, transition to a suitable posture.  You can control the posture required for gripping by using the lifting axis and the wrist roll axis.</p>
+</dd>
+</dl>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps3_grasp.jpg"><img alt="../_images/teleop_ps3_grasp.jpg" src="../_images/teleop_ps3_grasp.jpg" style="width: 255.75px; height: 324.75px;" /></a>
+</figure>
+</section>
+<section id="id21">
+<h4><span class="section-number">7.1.3.3.2. </span>Dynamic posture storage and transition<a class="headerlink" href="#id21" title="Link to this heading">#</a></h4>
+<p>Dynamically store postures and transition to saved postures.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps3_dynamic_pose.jpg"><img alt="../_images/teleop_ps3_dynamic_pose.jpg" src="../_images/teleop_ps3_dynamic_pose.jpg" style="width: 551.4px; height: 210.6px;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps4_dynamic_pose.jpg"><img alt="../_images/teleop_ps4_dynamic_pose.jpg" src="../_images/teleop_ps4_dynamic_pose.jpg" style="width: 549.6px; height: 225.0px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Save Pose:</dt><dd><p>Save the robot’s current posture.</p>
+</dd>
+<dt>Dynamic storage:</dt><dd><p>Transition to a saved posture.  If the posture is not saved, then transition to a standard posture.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="l1">
+<h3><span class="section-number">7.1.3.4. </span>Control while pressing “L1”<a class="headerlink" href="#l1" title="Link to this heading">#</a></h3>
+<section id="id22">
+<h4><span class="section-number">7.1.3.4.1. </span>Base control<a class="headerlink" href="#id22" title="Link to this heading">#</a></h4>
+<p>Perform base control.  When pressing only “L1”, it moves at normal speed. when pressing “L2” while pressing “L1” as pressing “L2” causes the movement speed to become fast.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps3_base.jpg"><img alt="../_images/teleop_ps3_base.jpg" src="../_images/teleop_ps3_base.jpg" style="width: 551.4px; height: 210.6px;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps4_base.jpg"><img alt="../_images/teleop_ps4_base.jpg" src="../_images/teleop_ps4_base.jpg" style="width: 549.6px; height: 228.6px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Front:</dt><dd><p>Move forward.</p>
+</dd>
+<dt>Back:</dt><dd><p>Move backwards.</p>
+</dd>
+<dt>Right:</dt><dd><p>Move to the right.</p>
+</dd>
+<dt>Left:</dt><dd><p>Move to the left.</p>
+</dd>
+<dt>Clockwise:</dt><dd><p>Rotate clockwise.</p>
+</dd>
+<dt>Counter Clockwise:</dt><dd><p>Rotate counterclockwise.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="id23">
+<h3><span class="section-number">7.1.3.5. </span>Control while pressing “△”<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<section id="id24">
+<h4><span class="section-number">7.1.3.5.1. </span>Head control<a class="headerlink" href="#id24" title="Link to this heading">#</a></h4>
+<p>Perform head control.  When pressing only “△”, the head moves at normal speed.  when pressing “L2” while pressing “△” as pressing “L2” causes the movement speed to become fast.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps3_head_analog.jpg"><img alt="../_images/teleop_ps3_head_analog.jpg" src="../_images/teleop_ps3_head_analog.jpg" style="width: 551.4px; height: 253.2px;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps4_head_analog.jpg"><img alt="../_images/teleop_ps4_head_analog.jpg" src="../_images/teleop_ps4_head_analog.jpg" style="width: 549.6px; height: 270.0px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Up:</dt><dd><p>Turn the head up.</p>
+</dd>
+<dt>Down:</dt><dd><p>Turn the head down.</p>
+</dd>
+<dt>Right:</dt><dd><p>Turn the head to the right.</p>
+</dd>
+<dt>Left:</dt><dd><p>Turn the head to the left.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="id25">
+<h3><span class="section-number">7.1.3.6. </span>Control while pressing “□”<a class="headerlink" href="#id25" title="Link to this heading">#</a></h3>
+<section id="id26">
+<h4><span class="section-number">7.1.3.6.1. </span>Lifting axis control<a class="headerlink" href="#id26" title="Link to this heading">#</a></h4>
+<p>Perform lifting axis control.  When pressing only “□”, the lifting axis moves at normal speed. when pressing “L2” while pressing “□” as pressing “L2” causes the movement speed to become fast.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps3_arm_lift_analog.jpg"><img alt="../_images/teleop_ps3_arm_lift_analog.jpg" src="../_images/teleop_ps3_arm_lift_analog.jpg" style="width: 551.4px; height: 253.2px;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps4_arm_lift_analog.jpg"><img alt="../_images/teleop_ps4_arm_lift_analog.jpg" src="../_images/teleop_ps4_arm_lift_analog.jpg" style="width: 549.6px; height: 267.59999999999997px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Up:</dt><dd><p>Raise the lifting axis.</p>
+</dd>
+<dt>Down:</dt><dd><p>Lower the lifting axis.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="id27">
+<h3><span class="section-number">7.1.3.7. </span>Control while pressing “○”<a class="headerlink" href="#id27" title="Link to this heading">#</a></h3>
+<section id="id28">
+<h4><span class="section-number">7.1.3.7.1. </span>Wrist control<a class="headerlink" href="#id28" title="Link to this heading">#</a></h4>
+<p>Perform wrist control.  When pressing only “○”, the wrist moves at normal speed. when pressing “L2” while pressing “○” as pressing “L2” causes the movement speed to become fast.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps3_wrist_analog.jpg"><img alt="../_images/teleop_ps3_wrist_analog.jpg" src="../_images/teleop_ps3_wrist_analog.jpg" style="width: 551.4px; height: 253.2px;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps4_wrist_analog.jpg"><img alt="../_images/teleop_ps4_wrist_analog.jpg" src="../_images/teleop_ps4_wrist_analog.jpg" style="width: 549.6px; height: 267.59999999999997px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Up:</dt><dd><p>Tilt the wrist up.</p>
+</dd>
+<dt>Down:</dt><dd><p>Tilt the wrist down.</p>
+</dd>
+<dt>Clockwise:</dt><dd><p>Turn the wrist clockwise.</p>
+</dd>
+<dt>Counter Clockwise:</dt><dd><p>Turn the wrist counterclockwise.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="id29">
+<h3><span class="section-number">7.1.3.8. </span>Control while pressing “×”<a class="headerlink" href="#id29" title="Link to this heading">#</a></h3>
+<section id="id30">
+<h4><span class="section-number">7.1.3.8.1. </span>Arm control<a class="headerlink" href="#id30" title="Link to this heading">#</a></h4>
+<p>Perform arm control.  When pressing only “×”, the arm moves at normal speed. when pressing “L2” while pressing “×” as pressing “L2” causes the movement speed to become fast.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps3_arm_analog.jpg"><img alt="../_images/teleop_ps3_arm_analog.jpg" src="../_images/teleop_ps3_arm_analog.jpg" style="width: 551.4px; height: 253.2px;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps4_arm_analog.jpg"><img alt="../_images/teleop_ps4_arm_analog.jpg" src="../_images/teleop_ps4_arm_analog.jpg" style="width: 549.6px; height: 267.59999999999997px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Up:</dt><dd><p>Tilt the arm up.</p>
+</dd>
+<dt>Down:</dt><dd><p>Tilt the arm down.</p>
+</dd>
+<dt>Clockwise:</dt><dd><p>Turn the arm clockwise</p>
+</dd>
+<dt>Counter clockwise:</dt><dd><p>Turn the arm counterclockwise.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="r1">
+<h3><span class="section-number">7.1.3.9. </span>Control while pressing “R1”<a class="headerlink" href="#r1" title="Link to this heading">#</a></h3>
+<section id="id31">
+<h4><span class="section-number">7.1.3.9.1. </span>Hand position control<a class="headerlink" href="#id31" title="Link to this heading">#</a></h4>
+<p>Perform hand position control.  If the movable range of the hand is surpassed, then it will stop without working.</p>
+<p>When pressing only “R1”, the base performs hand position control while the base remains still.  When pressing “R2” while pressing “R1”, the hand moves along with the base.  Although the hand movement range will widens, as the base may move.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps3_endeffector_plus.jpg"><img alt="../_images/teleop_ps3_endeffector_plus.jpg" src="../_images/teleop_ps3_endeffector_plus.jpg" style="width: 551.4px; height: 210.6px;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps4_endeffector_plus.jpg"><img alt="../_images/teleop_ps4_endeffector_plus.jpg" src="../_images/teleop_ps4_endeffector_plus.jpg" style="width: 549.6px; height: 225.0px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Front:</dt><dd><p>Move forward.</p>
+</dd>
+<dt>Back:</dt><dd><p>Move backwards.</p>
+</dd>
+<dt>Right:</dt><dd><p>Move to the right.</p>
+</dd>
+<dt>Left:</dt><dd><p>Move to the left.</p>
+</dd>
+<dt>Up:</dt><dd><p>Move up.</p>
+</dd>
+<dt>Down:</dt><dd><p>Move down.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="r2">
+<h3><span class="section-number">7.1.3.10. </span>Control while pressing “R2”<a class="headerlink" href="#r2" title="Link to this heading">#</a></h3>
+<section id="id32">
+<h4><span class="section-number">7.1.3.10.1. </span>Gripper control<a class="headerlink" href="#id32" title="Link to this heading">#</a></h4>
+<p>Perform gripper control.  When pressing only “R2”, the gripper moves at normal speed.  when pressing “L2” while pressing “R2” as pressing “L2” causes the movement speed to become fast.</p>
+<p>Fast mode is available only for “Gripper open/close”.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps3_gripper.jpg"><img alt="../_images/teleop_ps3_gripper.jpg" src="../_images/teleop_ps3_gripper.jpg" style="width: 551.4px; height: 276.0px;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/teleop_ps4_gripper.jpg"><img alt="../_images/teleop_ps4_gripper.jpg" src="../_images/teleop_ps4_gripper.jpg" style="width: 549.6px; height: 304.2px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Gripper open:</dt><dd><p>Slowly open the gripper.</p>
+</dd>
+<dt>Gripper close:</dt><dd><p>Slowly close the gripper.</p>
+</dd>
+<dt>Half Open:</dt><dd><p>Only open the gripper half way.</p>
+</dd>
+<dt>Force grasp:</dt><dd><p>Close the gripper with force control.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tool_controll.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>HSR Operation Using Tools</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../reference/reference.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Reference</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dualshock3">7.1.1. DUALSHOCK®3 Connection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">7.1.1.1. Switching to DUALSHOCK®3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.1.1.2. Wired Connection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">7.1.1.2.1. Connection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">7.1.1.2.2. Disconnection</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">7.1.1.3. Wireless Connection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-bluetooth">7.1.1.3.1. Preparation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">7.1.1.3.2. Connection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#disconnect-bluetooth">7.1.1.3.3. Disconnection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dualshock4">7.1.2. DUALSHOCK®4 Connection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">7.1.2.1. Switching to DUALSHOCK®4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">7.1.2.2. Wired Connection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">7.1.2.2.1. Connection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">7.1.2.2.2. Disconnection</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">7.1.2.3. Wireless Connection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">7.1.2.3.1. Preparation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">7.1.2.3.2. Connection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">7.1.2.3.3. Disconnection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">7.1.3. How to Use</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">7.1.3.1. Control overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">7.1.3.2. Control without optional buttons</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-share">7.1.3.3. Control while pressing “SELECT/SHARE”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">7.1.3.3.1. Default posture transitions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">7.1.3.3.2. Dynamic posture storage and transition</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l1">7.1.3.4. Control while pressing “L1”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">7.1.3.4.1. Base control</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">7.1.3.5. Control while pressing “△”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">7.1.3.5.1. Head control</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">7.1.3.6. Control while pressing “□”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">7.1.3.6.1. Lifting axis control</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">7.1.3.7. Control while pressing “○”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">7.1.3.7.1. Wrist control</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">7.1.3.8. Control while pressing “×”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">7.1.3.8.1. Arm control</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r1">7.1.3.9. Control while pressing “R1”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">7.1.3.9.1. Hand position control</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r2">7.1.3.10. Control while pressing “R2”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">7.1.3.10.1. Gripper control</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Toyota Motor Corporation.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Copyright 2026, Toyota Motor Corporation.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
