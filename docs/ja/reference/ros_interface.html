@@ -1,0 +1,1207 @@
+
+<!DOCTYPE html>
+
+
+<html lang="ja" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>8.1.1. ROSインターフェース &#8212; HSR ROS2 Simulator Manual version: 1.1.0</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=14a76748"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=505101b2"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../_static/translations.js?v=4dbe4bdc"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/ros_interface';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="8.1.2. ROSコマンド・ツール" href="ros_command_tool.html" />
+    <link rel="prev" title="8.1. ROS API" href="ros_api.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="ja"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">本文へスキップ</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>トップに戻る</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="バージョン警告"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="サイトナビゲーション">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="検索" aria-label="検索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">検索</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="検索" aria-label="検索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">検索</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="このページでは">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">HSR ROS2 Simulator Manual version: 1.1.0</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="検索" aria-label="検索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">検索</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../setup/setup.html">1. シミュレータ環境のセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start_development/start_development.html">2. 開発を始める</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python_interface/python_interface.html">3. Pythonインターフェースを使う</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python_interface/start_python_interface.html">3.1. Pythonインターフェースについて</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../python_interface/arm_python_interface.html">3.2. 関節を動かす</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../python_interface/arm_basic_python_interface.html">3.2.1. 基本編</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../python_interface/arm_advanced_python_interface.html">3.2.2. 応用編</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_interface/base_python_interface.html">3.3. 台車を動かす</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_interface/voice_python_interface.html">3.4. 音声合成を行う</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../moveit2/use_moveit2.html">4. MoveIt2を使う</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../moveit2/moveit2.html">4.1. MoveIt2を使う</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../rosnav2/rosnav2.html">5. Nav2を使う</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../rosnav2/simulator.html">5.1. ナビゲーション</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pick_place/pick_place.html">6. 物体認識と把持姿勢推定を統合したPick &amp; Placeサンプルコードの実行</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pick_place/overview.html">6.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pick_place/simulator.html">6.2. シミュレータでの実行</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tool_controll/tool_controll.html">7. ツールからのHSR操縦</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tool_controll/use_dualshock_controller.html">7.1. DUALSHOCK®を使った操縦</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="reference.html">8. リファレンス</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="ros_api.html">8.1. ROS API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">8.1.1. ROSインターフェース</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ros_command_tool.html">8.1.2. ROSコマンド・ツール</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="このページをダウンロード">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/reference/ros_interface.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="ソースファイルをダウンロード"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="PDFに印刷"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全画面モード"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="ライト"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="ダーク"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="検索" aria-label="検索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ROSインターフェース</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目次 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">8.1.1.1. 頭部関節制御</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actions">8.1.1.1.1. Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publishers">8.1.1.1.2. Publishers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subscriber">8.1.1.1.3. Subscriber</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">8.1.1.1.4. Parameters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">8.1.1.2. 腕部関節制御</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">8.1.1.2.1. Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">8.1.1.2.2. Publishers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">8.1.1.2.3. Subscriber</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">8.1.1.2.4. Parameters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">8.1.1.3. ハンド制御</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">8.1.1.3.1. Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">8.1.1.3.2. Subscriber</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">8.1.1.4. 台車制御</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">8.1.1.4.1. Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">8.1.1.4.2. Publishers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">8.1.1.4.3. Subscriber</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">8.1.1.4.4. Parameters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">8.1.1.5. 手先カメラ</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">8.1.1.5.1. Publishers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">8.1.1.6. 頭部広角カメラ</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">8.1.1.6.1. Publishers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">8.1.1.7. 頭部ステレオカメラ（左）</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">8.1.1.7.1. Publishers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">8.1.1.8. 頭部ステレオカメラ（右）</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">8.1.1.8.1. Publishers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">8.1.1.9. 頭部3次元距離センサ</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">8.1.1.9.1. Publishers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imu">8.1.1.10. IMU</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">8.1.1.10.1. Publishers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">8.1.1.11. レーザースキャナー</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">8.1.1.11.1. Publishers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">8.1.1.12. 関節状態</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">8.1.1.12.1. Publishers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">8.1.1.12.2. Parameters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controllermanager">8.1.1.13. ControllerManager制御</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="ros">
+<h1><span class="section-number">8.1.1. </span>ROSインターフェース<a class="headerlink" href="#ros" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2><span class="section-number">8.1.1.1. </span>頭部関節制御<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>以下に準じます。</p>
+<ul class="simple">
+<li><p>humble : <a class="reference external" href="https://control.ros.org/humble/doc/ros2_controllers/joint_trajectory_controller/doc/userdoc.html">ros2_controllers/joint_trajectory_controller</a></p></li>
+<li><p>jazzy : <a class="reference external" href="https://control.ros.org/jazzy/doc/ros2_controllers/joint_trajectory_controller/doc/userdoc.html">ros2_controllers/joint_trajectory_controller</a></p></li>
+</ul>
+<p>以下の関節を制御します。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">head_pan_joint</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">head_tilt_joint</span></code></p></li>
+</ul>
+<section id="actions">
+<h3><span class="section-number">8.1.1.1.1. </span>Actions<a class="headerlink" href="#actions" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/head_trajectory_controller/follow_joint_trajectory</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">control_msgs/action/FollowJointTrajectory</span></code></p>
+</dd>
+<dt>description</dt><dd><p>軌道再生のためのアクションインターフェース</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="publishers">
+<h3><span class="section-number">8.1.1.1.2. </span>Publishers<a class="headerlink" href="#publishers" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/head_trajectory_controller/state</span></code></p>
+<dl>
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">control_msgs/msg/JointTrajectoryControllerState</span></code></p>
+</dd>
+<dt>description</dt><dd><p>コントローラの現在状態</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p><code class="docutils literal notranslate"><span class="pre">jazzy</span></code> の場合は、 <code class="docutils literal notranslate"><span class="pre">/head_trajectory_controller/controller_state</span></code></p>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="subscriber">
+<h3><span class="section-number">8.1.1.1.3. </span>Subscriber<a class="headerlink" href="#subscriber" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/head_trajectory_controller/joint_trajectory</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">trajectory_msgs/msg/JointTrajectory</span></code></p>
+</dd>
+<dt>description</dt><dd><p>目標軌道を設定するトピックインターフェース</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="parameters">
+<h3><span class="section-number">8.1.1.1.4. </span>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h3>
+<p>以下を参照。</p>
+<ul class="simple">
+<li><p>humble : <a class="reference external" href="https://control.ros.org/humble/doc/ros2_controllers/joint_trajectory_controller/doc/parameters.html">ros2_controllers/joint_trajectory_controller</a></p></li>
+<li><p>jazzy : <a class="reference external" href="https://control.ros.org/jazzy/doc/ros2_controllers/joint_trajectory_controller/doc/parameters.html">ros2_controllers/joint_trajectory_controller</a></p></li>
+</ul>
+</section>
+</section>
+<section id="id2">
+<h2><span class="section-number">8.1.1.2. </span>腕部関節制御<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>以下に準じます。</p>
+<ul class="simple">
+<li><p>humble : <a class="reference external" href="https://control.ros.org/humble/doc/ros2_controllers/joint_trajectory_controller/doc/userdoc.html">ros2_controllers/joint_trajectory_controller</a></p></li>
+<li><p>jazzy : <a class="reference external" href="https://control.ros.org/jazzy/doc/ros2_controllers/joint_trajectory_controller/doc/userdoc.html">ros2_controllers/joint_trajectory_controller</a></p></li>
+</ul>
+<p>以下の関節を制御します。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">arm_lift_joint</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arm_flex_joint</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arm_roll_joint</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wrist_flex_joint</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wrist_roll_joint</span></code></p></li>
+</ul>
+<section id="id3">
+<h3><span class="section-number">8.1.1.2.1. </span>Actions<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/arm_trajectory_controller/follow_joint_trajectory</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">control_msgs/action/FollowJointTrajectory</span></code></p>
+</dd>
+<dt>description</dt><dd><p>軌道再生のためのアクションインターフェース</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id4">
+<h3><span class="section-number">8.1.1.2.2. </span>Publishers<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/arm_trajectory_controller/state</span></code></p>
+<dl>
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">control_msgs/msg/JointTrajectoryControllerState</span></code></p>
+</dd>
+<dt>description</dt><dd><p>コントローラの現在状態</p>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p><code class="docutils literal notranslate"><span class="pre">jazzy</span></code> の場合は、 <code class="docutils literal notranslate"><span class="pre">/arm_trajectory_controller/controller_state</span></code></p>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id5">
+<h3><span class="section-number">8.1.1.2.3. </span>Subscriber<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/arm_trajectory_controller/joint_trajectory</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">trajectory_msgs/msg/JointTrajectory</span></code></p>
+</dd>
+<dt>description</dt><dd><p>目標軌道を設定するトピックインターフェース</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id6">
+<h3><span class="section-number">8.1.1.2.4. </span>Parameters<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>以下を参照。</p>
+<ul class="simple">
+<li><p>humble : <a class="reference external" href="https://control.ros.org/humble/doc/ros2_controllers/joint_trajectory_controller/doc/parameters.html">ros2_controllers/joint_trajectory_controller</a></p></li>
+<li><p>jazzy : <a class="reference external" href="https://control.ros.org/jazzy/doc/ros2_controllers/joint_trajectory_controller/doc/parameters.html">ros2_controllers/joint_trajectory_controller</a></p></li>
+</ul>
+</section>
+</section>
+<section id="id7">
+<h2><span class="section-number">8.1.1.3. </span>ハンド制御<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>ハンド部を制御します。</p>
+<section id="id8">
+<h3><span class="section-number">8.1.1.3.1. </span>Actions<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/gripper_controller/follow_joint_trajectory</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">control_msgs/action/FollowJointTrajectory</span></code></p>
+</dd>
+<dt>description</dt><dd><p>指関節軌道再生のアクションインターフェース</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/gripper_controller/set_distance</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">tmc_control_msgs/action/GripperSetDistance</span></code></p>
+</dd>
+<dt>description</dt><dd><p>指先間距離を指定して開閉するアクションインターフェース</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/gripper_controller/follow_distance_trajectory</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">control_msgs/action/FollowJointTrajectory</span></code></p>
+</dd>
+<dt>description</dt><dd><p>指先距離軌道再生のアクションインターフェース</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/gripper_controller/grasp</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">tmc_control_msgs/action/GripperApplyEffort</span></code></p>
+</dd>
+<dt>description</dt><dd><p>握りこみ動作のためのアクションインターフェース</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/gripper_controller/apply_force</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">tmc_control_msgs/action/GripperApplyEffort</span></code></p>
+</dd>
+<dt>description</dt><dd><p>指定した力で把持するアクションインターフェース</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id9">
+<h3><span class="section-number">8.1.1.3.2. </span>Subscriber<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/gripper_controller/joint_trajectory</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">trajectory_msgs/msg/JointTrajectory</span></code></p>
+</dd>
+<dt>description</dt><dd><p>目標軌道を設定するトピックインターフェース</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/gripper_controller/distance_trajectory</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">trajectory_msgs/msg/JointTrajectory</span></code></p>
+</dd>
+<dt>description</dt><dd><p>指先間距離の目標軌道を設定するトピックインターフェース</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/gripper_controller/command_distance</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">std_msgs/msg/Float32</span></code></p>
+</dd>
+<dt>description</dt><dd><p>指先間距離の目標値を設定するトピックインターフェース</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+<section id="id10">
+<h2><span class="section-number">8.1.1.4. </span>台車制御<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>以下の関節を制御します。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base_roll_joint</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">base_l_drive_wheel_joint</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">base_r_drive_wheel_joint</span></code></p></li>
+</ul>
+<p>ただし、<code class="docutils literal notranslate"><span class="pre">JointTrajectoryController</span></code>は <code class="docutils literal notranslate"><span class="pre">/odom</span></code> での位置・方位を仮想的に関節とみなした以下の名前を持つジョイントを制御します。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">odom_x</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">odom_y</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">odom_t</span></code></p></li>
+</ul>
+<section id="id11">
+<h3><span class="section-number">8.1.1.4.1. </span>Actions<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/omni_base_controller/follow_joint_trajectory</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">control_msgs/action/FollowJointTrajectory</span></code></p>
+</dd>
+<dt>description</dt><dd><p>台車軌道再生を行うアクションインターフェース</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id12">
+<h3><span class="section-number">8.1.1.4.2. </span>Publishers<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/omni_base_controller/state</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">control_msgs/msg/JointTrajectoryControllerState</span></code></p>
+</dd>
+<dt>description</dt><dd><p>コントローラの現在状態</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/omni_base_controller/wheel_odom</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">nav_msgs/msg/Odometry</span></code></p>
+</dd>
+<dt>description</dt><dd><p>ロボット起動時からのホイールオドメトリ</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id13">
+<h3><span class="section-number">8.1.1.4.3. </span>Subscriber<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/omni_base_controller/joint_trajectory</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">trajectory_msgs/msg/JointTrajectory</span></code></p>
+</dd>
+<dt>description</dt><dd><p>目標軌道を設定するトピックインターフェース</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/omni_base_controller/cmd_vel</span></code></p>
+<dl>
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">geometry_msgs/msg/Twist</span></code></p>
+</dd>
+<dt>description</dt><dd><p>目標速度を設定するトピックインターフェース</p>
+<p>ロボット座標系における前後速度 (linear.x)、左右速度 (linear.y)、旋回速度 (angular.z) を指定</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id14">
+<h3><span class="section-number">8.1.1.4.4. </span>Parameters<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/omni_base_controller:base_coordinates</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">String[]</span></code></p>
+</dd>
+<dt>description</dt><dd><p>制御対象関節のリスト</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/omni_base_controller:command_timeout</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">Double</span></code></p>
+</dd>
+<dt>description</dt><dd><p>目標速度入力の途絶判定時間［s］
+途絶したら目標速度をゼロにする (デフォルト値：0.5)</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/omni_base_controller:joints.l_wheel</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p>
+</dd>
+<dt>description</dt><dd><p>左駆動輪の関節名</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/omni_base_controller:joints.r_wheel</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p>
+</dd>
+<dt>description</dt><dd><p>右駆動輪の関節名</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/omni_base_controller:joints.steer</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p>
+</dd>
+<dt>description</dt><dd><p>台車旋回軸の関節名</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/omni_base_controller:odometry_publish_rate</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">Double</span></code></p>
+</dd>
+<dt>description</dt><dd><p><code class="docutils literal notranslate"><span class="pre">/omni_base_controller/wheel_odom</span></code> の出版周期［Hz］ (デフォルト値：30.0)</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/omni_base_controller:state_publish_rate</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">Double</span></code></p>
+</dd>
+<dt>description</dt><dd><p>コントローラ状態の出版周期［Hz］(デフォルト値：50.0)</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/omni_base_controller:transform_publish_rate</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">Double</span></code></p>
+</dd>
+<dt>description</dt><dd><p>オドメトリのTF出版周期［Hz］ (デフォルト値：30.0)</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/omni_base_controller:wheel_odom_map_frame</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p>
+</dd>
+<dt>description</dt><dd><p>ホイールオドメトリ入力の基準フレーム名 (デフォルト値： <code class="docutils literal notranslate"><span class="pre">odom</span></code> )</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/omni_base_controller:wheel_odom_base_frame</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p>
+</dd>
+<dt>description</dt><dd><p>ホイールオドメトリ入力のオドメトリフレーム名 (デフォルト値： <code class="docutils literal notranslate"><span class="pre">base_footprint_wheel</span></code> )</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+<section id="id15">
+<h2><span class="section-number">8.1.1.5. </span>手先カメラ<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="http://wiki.ros.org/image_transport">image_transport/ImageTransport</a>の仕様に準じます。</p>
+<section id="id16">
+<h3><span class="section-number">8.1.1.5.1. </span>Publishers<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/hand_camera/camera_info</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/CameraInfo</span></code></p>
+</dd>
+<dt>description</dt><dd><p>カメラ情報</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/hand_camera/image_raw</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/Image</span></code></p>
+</dd>
+<dt>description</dt><dd><p>&quot;raw&quot;伝送方式による画像</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+<section id="id17">
+<h2><span class="section-number">8.1.1.6. </span>頭部広角カメラ<a class="headerlink" href="#id17" title="Link to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<p>HSRBでのみ利用可能です。</p>
+</div>
+<p><a class="reference external" href="http://wiki.ros.org/image_transport">image_transport/ImageTransport</a>の仕様に準じます。</p>
+<section id="id18">
+<h3><span class="section-number">8.1.1.6.1. </span>Publishers<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/head_center_camera/camera_info</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/CameraInfo</span></code></p>
+</dd>
+<dt>description</dt><dd><p>カメラ情報</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/head_center_camera/image_raw</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/Image</span></code></p>
+</dd>
+<dt>description</dt><dd><p>&quot;raw&quot;伝送方式による画像</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+<section id="id19">
+<h2><span class="section-number">8.1.1.7. </span>頭部ステレオカメラ（左）<a class="headerlink" href="#id19" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="http://wiki.ros.org/image_transport">image_transport/ImageTransport</a>の仕様に準じます。</p>
+<section id="id20">
+<h3><span class="section-number">8.1.1.7.1. </span>Publishers<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/head_l_stereo_camera/camera_info</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/CameraInfo</span></code></p>
+</dd>
+<dt>description</dt><dd><p>カメラ情報</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/head_l_stereo_camera/image_rect_color</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/Image</span></code></p>
+</dd>
+<dt>description</dt><dd><p>&quot;raw&quot;伝送方式によるひずみ補正済み画像</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/head_l_stereo_camera/image_raw</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/Image</span></code></p>
+</dd>
+<dt>description</dt><dd><p>&quot;raw&quot;伝送方式による画像</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+<section id="id21">
+<h2><span class="section-number">8.1.1.8. </span>頭部ステレオカメラ（右）<a class="headerlink" href="#id21" title="Link to this heading">#</a></h2>
+<section id="id22">
+<h3><span class="section-number">8.1.1.8.1. </span>Publishers<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/head_r_stereo_camera/camera_info</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/CameraInfo</span></code></p>
+</dd>
+<dt>description</dt><dd><p>カメラ情報</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/head_r_stereo_camera/image_rect_color</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/Image</span></code></p>
+</dd>
+<dt>description</dt><dd><p>&quot;raw&quot;伝送方式によるひずみ補正済み画像</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/head_r_stereo_camera/image_raw</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/Image</span></code></p>
+</dd>
+<dt>description</dt><dd><p>&quot;raw&quot;伝送方式による画像</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+<section id="id23">
+<h2><span class="section-number">8.1.1.9. </span>頭部3次元距離センサ<a class="headerlink" href="#id23" title="Link to this heading">#</a></h2>
+<section id="id24">
+<h3><span class="section-number">8.1.1.9.1. </span>Publishers<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/head_rgbd_sensor/rgb/camera_info</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/CameraInfo</span></code></p>
+</dd>
+<dt>description</dt><dd><p>RGBカメラ情報</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/head_rgbd_sensor/rgb/image_rect_color</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/Image</span></code></p>
+</dd>
+<dt>description</dt><dd><p>歪み補正されたRGB画像</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/head_rgbd_sensor/depth_registered/camera_info</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/CameraInfo</span></code></p>
+</dd>
+<dt>description</dt><dd><p>RGBカメラ情報</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/head_rgbd_sensor/depth_registered/image_rect_raw</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/Image</span></code></p>
+</dd>
+<dt>description</dt><dd><p>RGBカメラ座標系に投影された歪み補正された深度画像、画素値の単位は[mm] (16UC1)</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/head_rgbd_sensor/depth_registered/rectified_points</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/PointCloud2</span></code></p>
+</dd>
+<dt>description</dt><dd><p>歪み補正された色付きポイントクラウド</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+<section id="imu">
+<h2><span class="section-number">8.1.1.10. </span>IMU<a class="headerlink" href="#imu" title="Link to this heading">#</a></h2>
+<section id="id25">
+<h3><span class="section-number">8.1.1.10.1. </span>Publishers<a class="headerlink" href="#id25" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/imu/data</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/Imu</span></code></p>
+</dd>
+<dt>description</dt><dd><p>台車胴部に搭載されたIMUの出力</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+<section id="id26">
+<h2><span class="section-number">8.1.1.11. </span>レーザースキャナー<a class="headerlink" href="#id26" title="Link to this heading">#</a></h2>
+<section id="id27">
+<h3><span class="section-number">8.1.1.11.1. </span>Publishers<a class="headerlink" href="#id27" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/scan</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/LaserScan</span></code></p>
+</dd>
+<dt>description</dt><dd><p>台車部レーザスキャナ(レーザレンジファインダ)の出力</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+<section id="id28">
+<h2><span class="section-number">8.1.1.12. </span>関節状態<a class="headerlink" href="#id28" title="Link to this heading">#</a></h2>
+<section id="id29">
+<h3><span class="section-number">8.1.1.12.1. </span>Publishers<a class="headerlink" href="#id29" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/joint_states</span></code></p>
+<dl class="simple">
+<dt>type</dt><dd><p><code class="docutils literal notranslate"><span class="pre">sensor_msgs/msg/JointState</span></code></p>
+</dd>
+<dt>description</dt><dd><p>各関節の現在状態（能動関節のみ含む）</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id30">
+<h3><span class="section-number">8.1.1.12.2. </span>Parameters<a class="headerlink" href="#id30" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://control.ros.org/master/doc/ros2_controllers/joint_state_broadcaster/doc/userdoc.html">ros2_controllers/joint_state_broadcaster</a>を参照。</p>
+</section>
+</section>
+<section id="controllermanager">
+<h2><span class="section-number">8.1.1.13. </span>ControllerManager制御<a class="headerlink" href="#controllermanager" title="Link to this heading">#</a></h2>
+<p>以下の仕様に準じます。</p>
+<ul class="simple">
+<li><p>humble : <a class="reference external" href="https://control.ros.org/humble/doc/ros2_control/controller_manager/doc/userdoc.html">controller_manager/ControllerManager</a></p></li>
+<li><p>jazzy : <a class="reference external" href="https://control.ros.org/jazzy/doc/ros2_control/controller_manager/doc/userdoc.html">controller_manager/ControllerManager</a></p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ros_api.html"
+       title="前のページ">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">前へ</p>
+        <p class="prev-next-title"><span class="section-number">8.1. </span>ROS API</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ros_command_tool.html"
+       title="次ページ">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">次へ</p>
+        <p class="prev-next-title"><span class="section-number">8.1.2. </span>ROSコマンド・ツール</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目次
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">8.1.1.1. 頭部関節制御</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actions">8.1.1.1.1. Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publishers">8.1.1.1.2. Publishers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subscriber">8.1.1.1.3. Subscriber</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">8.1.1.1.4. Parameters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">8.1.1.2. 腕部関節制御</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">8.1.1.2.1. Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">8.1.1.2.2. Publishers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">8.1.1.2.3. Subscriber</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">8.1.1.2.4. Parameters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">8.1.1.3. ハンド制御</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">8.1.1.3.1. Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">8.1.1.3.2. Subscriber</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">8.1.1.4. 台車制御</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">8.1.1.4.1. Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">8.1.1.4.2. Publishers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">8.1.1.4.3. Subscriber</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">8.1.1.4.4. Parameters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">8.1.1.5. 手先カメラ</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">8.1.1.5.1. Publishers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">8.1.1.6. 頭部広角カメラ</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">8.1.1.6.1. Publishers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">8.1.1.7. 頭部ステレオカメラ（左）</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">8.1.1.7.1. Publishers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">8.1.1.8. 頭部ステレオカメラ（右）</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">8.1.1.8.1. Publishers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">8.1.1.9. 頭部3次元距離センサ</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">8.1.1.9.1. Publishers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imu">8.1.1.10. IMU</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">8.1.1.10.1. Publishers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">8.1.1.11. レーザースキャナー</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">8.1.1.11.1. Publishers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">8.1.1.12. 関節状態</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">8.1.1.12.1. Publishers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">8.1.1.12.2. Parameters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#controllermanager">8.1.1.13. ControllerManager制御</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+著者 Toyota Motor Corporation.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Copyright 2026, Toyota Motor Corporation.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
